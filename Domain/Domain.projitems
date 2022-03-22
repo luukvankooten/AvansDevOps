@@ -15,13 +15,32 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\TestedState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\IBacklogState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\DoneState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\Todo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\TestingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\DoingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\ReadyForTestingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\BacklogContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\TodoState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Project.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Notifications\Notifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Notifications\IObserver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Sprint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Export\IExportToFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\IAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\CreateAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\InExecutionAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\ReviewSprintContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\ReleaseSprintContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\CloseAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\SprintContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\CancelAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\PipelineAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\ReviewAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Notifications\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Sprint\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Export\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\" />
   </ItemGroup>
 </Project>

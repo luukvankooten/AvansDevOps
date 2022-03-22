@@ -27,7 +27,7 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Testing()
         {
-            return this;
+            return new TestingState(Context);
         }
 
         public IBacklogState Todo()
@@ -37,7 +37,7 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState ReadyForTesting()
         {
-            return new TestingState(Context);
+            return this;
         }
     }
 }

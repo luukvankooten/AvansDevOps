@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using Domain.Models.Notifications;
+
 namespace Domain.Models.BacklogPhases
 {
+    /// <summary>
+    /// State patern
+    /// </summary>
     public class BacklogContext
     {
         public BacklogContext(Item item)
         {
-            State = new TotoState(this);
+            State = new TodoState(this);
             Item = item;
         }
 
@@ -42,5 +48,6 @@ namespace Domain.Models.BacklogPhases
         {
             State = State.Todo();
         }
+
     }
 }

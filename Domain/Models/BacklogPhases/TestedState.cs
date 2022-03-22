@@ -18,7 +18,7 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Done()
         {
-            return this;
+            return new DoneState(Context);
         }
 
         public IBacklogState ReadyForTesting()

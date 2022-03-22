@@ -6,15 +6,15 @@ namespace Domain.Models
 {
     public class Item
     {
-        public Item(Member member, string description, Sprint sprint)
+        public Item(Member developer, string description, Sprint sprint)
         {
-            Member = member;
+            Developer = developer;
             Description = description;
             Sprint = sprint;
             sprint.Items.Add(this);
         }
 
-        public Member Member { get; set; }
+        public Member Developer { get; set; }
 
         public string Description { get; set; }
 

@@ -13,7 +13,7 @@ namespace Domain.Models.BacklogPhases
        
         public IBacklogState Doing()
         {
-            return new ReadyForTestingState(Context);
+            return this;
         }
 
         public IBacklogState Done()
@@ -23,7 +23,7 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState ReadyForTesting()
         {
-            return this;
+            return new ReadyForTestingState(Context);
         }
 
         public IBacklogState Tested()
@@ -33,12 +33,12 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Todo()
         {
-            return new TotoState(Context);
+            return new TodoState(Context);
         }
 
         public IBacklogState Testing()
         {
-            return new TestedState(Context);
+            return this;
         }
     }
 }
