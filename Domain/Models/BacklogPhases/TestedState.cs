@@ -1,26 +1,27 @@
 ﻿using System;
 namespace Domain.Models.BacklogPhases
 {
-    public class Done : IBacklogState
+    public class TestedState : IBacklogState
     {
-        public Done(BacklogContext context)
+        public TestedState(BacklogContext context)
         {
             Context = context;
         }
 
         public BacklogContext Context { get; set; }
 
+
         public IBacklogState Doing()
         {
             return this;
         }
 
-        public IBacklogState ReadyForTesting()
+        public IBacklogState Done()
         {
             return this;
         }
 
-        public IBacklogState Tested()
+        public IBacklogState ReadyForTesting()
         {
             return this;
         }
@@ -35,7 +36,7 @@ namespace Domain.Models.BacklogPhases
             return this;
         }
 
-        IBacklogState IBacklogState.Done()
+        public IBacklogState Tested()
         {
             return this;
         }

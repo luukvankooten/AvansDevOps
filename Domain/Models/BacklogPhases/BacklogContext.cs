@@ -5,7 +5,7 @@ namespace Domain.Models.BacklogPhases
     {
         public BacklogContext(Item item)
         {
-            State = new Todo(this);
+            State = new TotoState(this);
             Item = item;
         }
 

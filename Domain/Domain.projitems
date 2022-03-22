@@ -12,13 +12,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Member.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\Tested.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\TestedState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\IBacklogState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\Done.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\DoneState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\Todo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\Testing.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\Doing.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\ReadyForTesting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\TestingState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\DoingState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\ReadyForTestingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\BacklogContext.cs" />
   </ItemGroup>
   <ItemGroup>

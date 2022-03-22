@@ -1,21 +1,16 @@
 ﻿using System;
 namespace Domain.Models.BacklogPhases
 {
-    public class Todo : IBacklogState
+    public class DoneState : IBacklogState
     {
-        public BacklogContext Context { get; set; }
-
-        public Todo(BacklogContext context)
+        public DoneState(BacklogContext context)
         {
             Context = context;
         }
 
-        public IBacklogState Doing()
-        {
-            return new Doing(Item);
-        }
+        public BacklogContext Context { get; set; }
 
-        public IBacklogState Done()
+        public IBacklogState Doing()
         {
             return this;
         }
@@ -35,7 +30,12 @@ namespace Domain.Models.BacklogPhases
             return this;
         }
 
-        IBacklogState IBacklogState.Todo()
+        public IBacklogState Todo()
+        {
+            return this;
+        }
+
+        public IBacklogState Done()
         {
             return this;
         }

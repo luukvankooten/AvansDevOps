@@ -1,14 +1,14 @@
 ﻿using System;
 namespace Domain.Models.BacklogPhases
 {
-    public class ReadyForTesting : IBacklogState
+    public class ReadyForTestingState : IBacklogState
     {
-        public Item Item { get; set; }
-        
-        public ReadyForTesting(Item item)
+        public ReadyForTestingState(BacklogContext context)
         {
-            Item = item;
+            Context = context;
         }
+
+        public BacklogContext Context { get; set; }
 
         public IBacklogState Doing()
         {
@@ -35,9 +35,9 @@ namespace Domain.Models.BacklogPhases
             return this;
         }
 
-        IBacklogState IBacklogState.ReadyForTesting()
+        public IBacklogState ReadyForTesting()
         {
-            return new Testing(Item);
+            return new TestingState(Context);
         }
     }
 }

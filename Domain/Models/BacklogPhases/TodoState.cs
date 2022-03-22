@@ -1,15 +1,19 @@
 ﻿using System;
 namespace Domain.Models.BacklogPhases
 {
-    public class Doing : IBacklogState
+    public class TodoState : IBacklogState
     {
-        public Doing(BacklogContext context)
+        public BacklogContext Context { get; set; }
+
+        public TodoState(BacklogContext context)
         {
             Context = context;
         }
 
-        public BacklogContext Context { get; set; }
-
+        public IBacklogState Doing()
+        {
+            return new DoingState(Context);
+        }
 
         public IBacklogState Done()
         {
@@ -34,11 +38,6 @@ namespace Domain.Models.BacklogPhases
         public IBacklogState Todo()
         {
             return this;
-        }
-
-        IBacklogState IBacklogState.Doing()
-        {
-            return new ReadyForTesting(Context);
         }
     }
 }
