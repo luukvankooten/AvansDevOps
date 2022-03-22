@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{89B9E73F-6FA3-4D67-A87D-D6C56E1B1E78}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Domain</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Member.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\Tested.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\IBacklogState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\Done.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\Todo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\Testing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\Doing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\ReadyForTesting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BacklogPhases\BacklogContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+  </ItemGroup>
+</Project>
