@@ -5,8 +5,9 @@ using Xunit;
 
 namespace Domain.Test.Models.BacklogPhases
 {
-    public class TodoTest
+    public class ReadyForTestingStateTest
     {
+
         [Fact]
         public void SwitchStateToTodo()
         {
@@ -15,11 +16,11 @@ namespace Domain.Test.Models.BacklogPhases
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var context = new BacklogContext(item);
-            var state = new TodoState(context);
+            var state = new ReadyForTestingState(context);
 
             var newState = state.Todo();
 
-            Assert.IsType<TodoState>(newState);
+            Assert.IsType<ReadyForTestingState>(newState);
         }
 
         [Fact]
@@ -30,11 +31,11 @@ namespace Domain.Test.Models.BacklogPhases
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var context = new BacklogContext(item);
-            var state = new TodoState(context);
+            var state = new ReadyForTestingState(context);
 
             var newState = state.Doing();
 
-            Assert.IsType<DoingState>(newState);
+            Assert.IsType<ReadyForTestingState>(newState);
         }
 
         [Fact]
@@ -45,11 +46,11 @@ namespace Domain.Test.Models.BacklogPhases
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var context = new BacklogContext(item);
-            var state = new TodoState(context);
+            var state = new ReadyForTestingState(context);
 
             var newState = state.ReadyForTesting();
 
-            Assert.IsType<TodoState>(newState);
+            Assert.IsType<ReadyForTestingState>(newState);
         }
 
         [Fact]
@@ -60,11 +61,11 @@ namespace Domain.Test.Models.BacklogPhases
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var context = new BacklogContext(item);
-            var state = new TodoState(context);
+            var state = new ReadyForTestingState(context);
 
             var newState = state.Testing();
 
-            Assert.IsType<TodoState>(newState);
+            Assert.IsType<TestingState>(newState);
         }
 
         [Fact]
@@ -75,11 +76,11 @@ namespace Domain.Test.Models.BacklogPhases
             var developer = new Member("Foo", "foo");
             var item = new Item(developer, "bar", sprint);
             var context = new BacklogContext(item);
-            var state = new TodoState(context);
+            var state = new ReadyForTestingState(context);
 
             var newState = state.Tested();
 
-            Assert.IsType<TodoState>(newState);
+            Assert.IsType<ReadyForTestingState>(newState);
         }
 
         [Fact]
@@ -90,11 +91,11 @@ namespace Domain.Test.Models.BacklogPhases
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var context = new BacklogContext(item);
-            var state = new TodoState(context);
+            var state = new ReadyForTestingState(context);
 
             var newState = state.Done();
 
-            Assert.IsType<TodoState>(newState);
+            Assert.IsType<ReadyForTestingState>(newState);
         }
     }
 }

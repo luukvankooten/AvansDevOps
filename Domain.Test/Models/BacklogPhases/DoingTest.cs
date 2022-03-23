@@ -19,9 +19,9 @@ namespace Domain.Test.Models.BacklogPhases
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var context = new BacklogContext(item);
-            var todoState = new DoingState(context);
+            var state = new DoingState(context);
 
-            var newState = todoState.Todo();
+            var newState = state.Todo();
 
             Assert.IsType<DoingState>(newState);
         }
@@ -34,11 +34,11 @@ namespace Domain.Test.Models.BacklogPhases
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var context = new BacklogContext(item);
-            var todoState = new DoingState(context);
+            var state = new DoingState(context);
 
-            var newState = todoState.Doing();
+            var newState = state.Doing();
 
-            Assert.IsType<ReadyForTestingState>(newState);
+            Assert.IsType<ReadyForTestingStateTest>(newState);
         }
 
         [Fact]
@@ -49,9 +49,9 @@ namespace Domain.Test.Models.BacklogPhases
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var context = new BacklogContext(item);
-            var todoState = new DoingState(context);
+            var state = new DoingState(context);
 
-            var newState = todoState.ReadyForTesting();
+            var newState = state.ReadyForTesting();
 
             Assert.IsType<DoingState>(newState);
         }
@@ -64,9 +64,9 @@ namespace Domain.Test.Models.BacklogPhases
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var context = new BacklogContext(item);
-            var todoState = new DoingState(context);
+            var state = new DoingState(context);
 
-            var newState = todoState.Testing();
+            var newState = state.Testing();
 
             Assert.IsType<DoingState>(newState);
         }
@@ -79,9 +79,9 @@ namespace Domain.Test.Models.BacklogPhases
             var developer = new Member("Foo", "foo");
             var item = new Item(developer, "bar", sprint);
             var context = new BacklogContext(item);
-            var todoState = new DoingState(context);
+            var state = new DoingState(context);
 
-            var newState = todoState.Tested();
+            var newState = state.Tested();
 
             Assert.IsType<DoingState>(newState);
         }
@@ -94,9 +94,9 @@ namespace Domain.Test.Models.BacklogPhases
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var context = new BacklogContext(item);
-            var todoState = new DoingState(context);
+            var state = new DoingState(context);
 
-            var newState = todoState.Done();
+            var newState = state.Done();
 
             Assert.IsType<DoingState>(newState);
         }
