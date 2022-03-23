@@ -9,7 +9,6 @@
     <Import_RootNamespace>Domain</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Factories\IFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Factories\IItemFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Factories\IMemberFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Factories\ItemConcreteFactory.cs" />
