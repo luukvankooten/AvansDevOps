@@ -1,5 +1,4 @@
-﻿using System;
-namespace Domain.Models.Export
+﻿namespace Domain.Models.Export
 {
     public interface IExportToFile
     {

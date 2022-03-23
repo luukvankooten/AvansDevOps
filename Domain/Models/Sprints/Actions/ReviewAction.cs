@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Domain.Models.Sprint.Actions
+namespace Domain.Models.Sprints.Actions
 {
     public class ReviewAction
     {

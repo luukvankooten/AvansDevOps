@@ -1,13 +1,13 @@
 ﻿using System;
-namespace Domain.Models.Sprint.Actions
+namespace Domain.Models.Sprints.Actions
 {
-    public class ConcreteExecuteAction: IAction
+    public class ConcreteExecuteAction : IAction
     {
         public ConcreteExecuteAction()
         {
         }
 
-        public void Dispatch(Sprint sprint)
+        public Sprint Dispatch(Sprint sprint)
         {
             throw new NotImplementedException();
         }

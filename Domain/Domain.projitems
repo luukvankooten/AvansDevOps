@@ -9,6 +9,10 @@
     <Import_RootNamespace>Domain</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Factories\IFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Factories\IItemFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Factories\IMemberFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Factories\ItemConcreteFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Member.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
@@ -23,24 +27,23 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Project.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Notifications\Notifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Notifications\IObserver.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Sprint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprints\Sprint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Export\IExportToFile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\IAction.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\CreateAction.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\InExecutionAction.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\ReviewSprintContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\ReleaseSprintContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\CloseAction.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\SprintContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\CancelAction.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\PipelineAction.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\ReviewAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprints\Actions\IAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprints\Actions\CreateAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprints\Actions\InExecutionAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprints\ReviewSprintContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprints\ReleaseSprintContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprints\Actions\CloseAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprints\SprintContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprints\Actions\CancelAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprints\Actions\PipelineAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Sprints\Actions\ReviewAction.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Notifications\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Models\Sprint\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Sprints\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Export\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Models\Sprint\Actions\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Sprints\" />
   </ItemGroup>
 </Project>

@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.810.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Test", "Domain.Test\Domain.Test.csproj", "{F395C030-30E8-4547-8BB5-36F116C14F04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Test", "Domain.Test\Domain.Test.csproj", "{F395C030-30E8-4547-8BB5-36F116C14F04}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Domain", "Domain\Domain.shproj", "{89B9E73F-6FA3-4D67-A87D-D6C56E1B1E78}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Domain\Domain.projitems*{89b9e73f-6fa3-4d67-a87d-d6c56e1b1e78}*SharedItemsImports = 13
+		Domain\Domain.projitems*{f395c030-30e8-4547-8bb5-36f116c14f04}*SharedItemsImports = 5
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

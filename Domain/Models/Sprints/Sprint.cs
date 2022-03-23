@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Domain.Models.Sprint.Actions;
+using Domain.Models.Sprints.Actions;
 
-namespace Domain.Models.Sprint
+namespace Domain.Models.Sprints
 {
 
     /// <summary>
