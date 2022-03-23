@@ -3,7 +3,7 @@ using Domain.Models;
 using Domain.Models.BacklogPhases;
 using Xunit;
 
-namespace Domain.Test.Models.BacklogPhases
+namespace DomainTest.Models.BacklogPhases
 {
     public class DoingTest
     {
@@ -38,7 +38,7 @@ namespace Domain.Test.Models.BacklogPhases
 
             var newState = state.Doing();
 
-            Assert.IsType<ReadyForTestingStateTest>(newState);
+            Assert.IsType<DoingState>(newState);
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace Domain.Test.Models.BacklogPhases
 
             var newState = state.ReadyForTesting();
 
-            Assert.IsType<DoingState>(newState);
+            Assert.IsType<ReadyForTestingState>(newState);
         }
 
         [Fact]
