@@ -1,5 +1,8 @@
 ﻿namespace Domain.Models.Factories
 {
+    /// <summary>
+    /// Factory design pattern
+    /// </summary>
     public class MemberConcreteFactory : IMemberFactory
     {
         public Member Create(string name, string email)

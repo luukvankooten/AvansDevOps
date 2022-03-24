@@ -2,6 +2,9 @@
 
 namespace Domain.Models.Factories
 {
+    /// <summary>
+    /// Factory design pattern
+    /// </summary>
     public class SprintConcreteFactory : ISprintFactory
     {
         public Sprint CreateRelease(string name, DateTime startDate, DateTime endDate, Member scrumMaster)

@@ -2,6 +2,9 @@
 
 namespace Domain.Models.Factories
 {
+    /// <summary>
+    /// Factory design pattern
+    /// </summary>
     public class ProjectConcreteFactory : IProjectFactory
     {
         public Project Create(IList<Sprint> sprints, Member productOwner)
