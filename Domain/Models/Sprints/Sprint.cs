@@ -50,7 +50,5 @@ namespace Domain.Models.Sprints
 
         public Member LeadDeveloper { get; set; }
 
-
-
     }
 }

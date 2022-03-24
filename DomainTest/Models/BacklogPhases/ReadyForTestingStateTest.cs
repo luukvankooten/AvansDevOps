@@ -1,6 +1,8 @@
 ﻿using System;
 using Domain.Models;
 using Domain.Models.BacklogPhases;
+using Domain.Models.Notifications;
+using Moq;
 using Xunit;
 
 namespace Domain.Test.Models.BacklogPhases
@@ -15,7 +17,8 @@ namespace Domain.Test.Models.BacklogPhases
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
-            var context = new BacklogContext(item);
+            var notifier = new Mock<Notifier>();
+            var context = new BacklogContext(item, notifier.Object);
             var state = new ReadyForTestingState(context);
 
             var newState = state.Todo();
@@ -30,7 +33,8 @@ namespace Domain.Test.Models.BacklogPhases
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
-            var context = new BacklogContext(item);
+            var notifier = new Mock<Notifier>();
+            var context = new BacklogContext(item, notifier.Object);
             var state = new ReadyForTestingState(context);
 
             var newState = state.Doing();
@@ -45,7 +49,8 @@ namespace Domain.Test.Models.BacklogPhases
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
-            var context = new BacklogContext(item);
+            var notifier = new Mock<Notifier>();
+            var context = new BacklogContext(item, notifier.Object);
             var state = new ReadyForTestingState(context);
 
             var newState = state.ReadyForTesting();
@@ -60,7 +65,8 @@ namespace Domain.Test.Models.BacklogPhases
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
-            var context = new BacklogContext(item);
+            var notifier = new Mock<Notifier>();
+            var context = new BacklogContext(item, notifier.Object);
             var state = new ReadyForTestingState(context);
 
             var newState = state.Testing();
@@ -75,7 +81,8 @@ namespace Domain.Test.Models.BacklogPhases
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var developer = new Member("Foo", "foo");
             var item = new Item(developer, "bar", sprint);
-            var context = new BacklogContext(item);
+            var notifier = new Mock<Notifier>();
+            var context = new BacklogContext(item, notifier.Object);
             var state = new ReadyForTestingState(context);
 
             var newState = state.Tested();
@@ -90,7 +97,8 @@ namespace Domain.Test.Models.BacklogPhases
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
-            var context = new BacklogContext(item);
+            var notifier = new Mock<Notifier>();
+            var context = new BacklogContext(item, notifier.Object);
             var state = new ReadyForTestingState(context);
 
             var newState = state.Done();
