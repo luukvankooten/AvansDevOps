@@ -1,23 +1,49 @@
-﻿using Domain.Models.Sprints.Actions;
+﻿using System;
+using Domain.Models.Notifications;
+using Domain.Models.Sprints.Close;
+using Domain.Models.Sprints.Stages;
 
 namespace Domain.Models.Sprints
 {
+
+    /// <summary>
+    /// Use the state pattern and the Strategy pattern
+    /// </summary>
     public abstract class SprintContext
     {
 
-        public Sprint Sprint { private set; get; }
+        public Sprint Sprint { get; }
+        public ICloseBehavior CloseBehavior { get; set; }
+        public Notifier Notifier { get; }
+        public ISprintStage SprintStage { get; protected set; }
 
-        public IAction Action { get; set; }
-
-
-        public SprintContext(IAction action)
+        public SprintContext(CreateState sprintStage, ICloseBehavior closeBehavior, Notifier notifier)
         {
-            Action = action;
+            SprintStage = sprintStage;
+            Sprint = sprintStage.Sprint;
+            CloseBehavior = closeBehavior;
+            Notifier = notifier;
         }
 
-        public void PerformDispatch()
+        public void Create()
         {
-            Sprint = Action.Dispatch(Sprint);
+            SprintStage = SprintStage.Create();
         }
+
+        public void Execute()
+        {
+            SprintStage = SprintStage.Execute();
+        }
+
+        public void Finish()
+        {
+            SprintStage = SprintStage.Finish();
+        }
+
+        public virtual void Close()
+        {
+            SprintStage = SprintStage.Close();
+        }
+
     }
 }

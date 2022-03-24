@@ -5,6 +5,6 @@ namespace Domain.Models.Notifications
 {
     public interface IObserver
     {
-        void Update(Item item);
+        void Update(Sprint sprint);
     }
 }

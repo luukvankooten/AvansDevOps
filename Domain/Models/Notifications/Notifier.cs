@@ -6,19 +6,33 @@ namespace Domain.Models.Notifications
 {
     public class Notifier
     {
-        public BacklogContext BacklogContext { get; }
 
-        
+        private List<IObserver> observers = new List<IObserver>();
 
-        public Notifier(BacklogContext backlogContext)
+        public Notifier(Sprint sprint)
         {
-            BacklogContext = backlogContext;
+            Sprint = sprint;
         }
 
-        
-        public void ChangeState(BacklogContext backlogContext)
-        {
+        public Sprint Sprint { get; }
 
+        public void AddObserver(IObserver observer)
+        {
+            observers.Add(observer);
         }
+
+        public void DetachObserver(IObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        public void Notify()
+        {
+            foreach (IObserver o in observers)
+            {
+                o.Update(Sprint);
+            }
+        }
+
     }
 }
