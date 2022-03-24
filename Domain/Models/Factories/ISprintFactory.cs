@@ -4,6 +4,7 @@ namespace Domain.Models.Factories
 {
     public interface ISprintFactory
     {
-        Sprint Create(string name, DateTime startDate, DateTime endDate, Member scrumMaster);
+        Sprint CreateRelease(string name, DateTime startDate, DateTime endDate, Member scrumMaster);
+        Sprints.Sprint CreateReview(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, Document document = null);
     }
 }
