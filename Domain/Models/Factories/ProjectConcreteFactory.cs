@@ -7,7 +7,7 @@ namespace Domain.Models.Factories
     /// </summary>
     public class ProjectConcreteFactory : IProjectFactory
     {
-        public Project Create(IList<Sprint> sprints, Member productOwner)
+        public virtual Project Create(IList<Sprint> sprints, Member productOwner)
         {
             return new Project(sprints, productOwner);
         }

@@ -16,10 +16,10 @@ namespace DomainTest.Models.Rapportage
             Member scrumMaster = new Member("Foo", "bar");
             Sprint sprint = new Sprint("foobar", DateTime.Now, DateTime.Now, leadDev, scrumMaster);
 
-            Mock<RapportagePdf> rapportagePdf = new Mock<RapportagePdf>();
-            rapportagePdf.Setup(x => x.Export()).Returns(true);
+            Mock<RapportagePdf> rapportageMock = new Mock<RapportagePdf>();
+            rapportageMock.Setup(x => x.Export()).Returns(true);
 
-            Assert.True(rapportagePdf.Object.Export());
+            Assert.True(rapportageMock.Object.Export());
         }
 
         [Fact]
@@ -29,10 +29,10 @@ namespace DomainTest.Models.Rapportage
             Member scrumMaster = new Member("Foo", "bar");
             Sprint sprint = new Sprint("foobar", DateTime.Now, DateTime.Now, leadDev, scrumMaster);
 
-            Mock<RapportagePng> rapportagePdf = new Mock<RapportagePng>();
-            rapportagePdf.Setup(x => x.Export()).Returns(true);
+            Mock<RapportagePng> rapportageMock = new Mock<RapportagePng>();
+            rapportageMock.Setup(x => x.Export()).Returns(true);
 
-            Assert.True(rapportagePdf.Object.Export());
+            Assert.True(rapportageMock.Object.Export());
         }
 
         [Fact]
@@ -42,10 +42,10 @@ namespace DomainTest.Models.Rapportage
             Member scrumMaster = new Member("Foo", "bar");
             Sprint sprint = new Sprint("foobar", DateTime.Now, DateTime.Now, leadDev, scrumMaster);
 
-            Mock<RapportageJpeg> rapportagePdf = new Mock<RapportageJpeg>();
-            rapportagePdf.Setup(x => x.Export()).Returns(true);
+            Mock<RapportageJpeg> rapportageMock = new Mock<RapportageJpeg>();
+            rapportageMock.Setup(x => x.Export()).Returns(true);
 
-            Assert.True(rapportagePdf.Object.Export());
+            Assert.True(rapportageMock.Object.Export());
         }
     }
 }

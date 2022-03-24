@@ -16,10 +16,10 @@ namespace DomainTest.Models.Rapportage
             Member scrumMaster = new Member("Foo", "bar");
             Sprint sprint = new Sprint("foobar", DateTime.Now, DateTime.Now, leadDev, scrumMaster);
 
-            Mock<RapportagePdf> rapportage = new Mock<RapportagePdf>();
-            rapportage.Setup(x => x.AddFooter("foobar")).Returns(true);
+            Mock<RapportagePdf> rapportageMock = new Mock<RapportagePdf>();
+            rapportageMock.Setup(x => x.AddFooter("foobar")).Returns(true);
 
-            Assert.True(rapportage.Object.AddFooter("foobar"));
+            Assert.True(rapportageMock.Object.AddFooter("foobar"));
         }
 
         [Fact]
@@ -29,10 +29,10 @@ namespace DomainTest.Models.Rapportage
             Member scrumMaster = new Member("Foo", "bar");
             Sprint sprint = new Sprint("foobar", DateTime.Now, DateTime.Now, leadDev, scrumMaster);
 
-            Mock<RapportagePng> rapportage = new Mock<RapportagePng>();
-            rapportage.Setup(x => x.AddFooter("foobar")).Returns(true);
+            Mock<RapportagePng> rapportageMock = new Mock<RapportagePng>();
+            rapportageMock.Setup(x => x.AddFooter("foobar")).Returns(true);
 
-            Assert.True(rapportage.Object.AddFooter("foobar"));
+            Assert.True(rapportageMock.Object.AddFooter("foobar"));
         }
 
         [Fact]
@@ -42,10 +42,10 @@ namespace DomainTest.Models.Rapportage
             Member scrumMaster = new Member("Foo", "bar");
             Sprint sprint = new Sprint("foobar", DateTime.Now, DateTime.Now, leadDev, scrumMaster);
 
-            Mock<RapportageJpeg> rapportage = new Mock<RapportageJpeg>();
-            rapportage.Setup(x => x.AddFooter("foobar")).Returns(true);
+            Mock<RapportageJpeg> rapportageMock = new Mock<RapportageJpeg>();
+            rapportageMock.Setup(x => x.AddFooter("foobar")).Returns(true);
 
-            Assert.True(rapportage.Object.AddFooter("foobar"));
+            Assert.True(rapportageMock.Object.AddFooter("foobar"));
         }
     }
 }
