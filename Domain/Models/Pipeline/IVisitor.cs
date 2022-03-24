@@ -1,6 +1,9 @@
 ﻿using System;
 namespace Domain.Models.Pipeline
 {
+    /// <summary>
+    /// This is part of the vistor pattern
+    /// </summary>
     public interface IVisitor
     {
         public void VisitSources(Sources analyse);
