@@ -3,10 +3,6 @@ namespace Domain.Models.Sprints.Close
 {
     public class ReviewBehavior: ICloseBehavior
     {
-        public ReviewBehavior()
-        {
-        }
-
         public void Close(Sprint sprint)
         {
             if(sprint.Document != null)

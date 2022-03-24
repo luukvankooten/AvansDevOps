@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Domain.Models.Sprints.Actions;
 
 namespace Domain.Models.Sprints
 {
