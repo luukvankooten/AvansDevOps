@@ -1,9 +1,9 @@
 ﻿using System;
 namespace Domain.Models.Sprints.Close
 {
-    public class Review: ICloseBehavior
+    public class ReviewBehavior: ICloseBehavior
     {
-        public Review()
+        public ReviewBehavior()
         {
         }
 

@@ -3,6 +3,9 @@ using Domain.Models.Sprints.Close;
 
 namespace Domain.Models.Sprints.Stages
 {
+    /// <summary>
+    /// The stratergy pattern is here applied
+    /// </summary>
     public class CloseState: ISprintStage
     {
         public CloseState(SprintContext sprintContext)
