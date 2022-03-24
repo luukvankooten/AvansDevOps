@@ -8,6 +8,9 @@
         public RapportageJpeg(Sprints.Sprint sprint)
             : base(sprint) { }
 
+        public RapportageJpeg()
+            : base(null) { }
+
         public override bool AddFooter(string content)
         {
             return true;

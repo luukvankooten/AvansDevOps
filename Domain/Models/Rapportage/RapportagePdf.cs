@@ -7,7 +7,8 @@
     {
         public RapportagePdf(Sprints.Sprint sprint) 
             : base(sprint){ }
-
+        public RapportagePdf()
+            : base(null) { }
         public override bool AddFooter(string content)
         {
             return true;

@@ -9,7 +9,7 @@ namespace Domain.Models.BacklogPhases
     /// </summary>
     public class BacklogContext
     {
-        public BacklogContext(Item item, Notifier notifier)
+        public BacklogContext(Item item, Notifier notifier = null)
         {
             State = new TodoState(this);
             Item = item;

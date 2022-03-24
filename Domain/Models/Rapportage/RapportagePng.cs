@@ -8,6 +8,9 @@
         public RapportagePng(Sprints.Sprint sprint)
             : base(sprint) { }
 
+        public RapportagePng()
+            : base(null) { }
+
         public override bool AddFooter(string content)
         {
             return true;
