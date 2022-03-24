@@ -106,5 +106,26 @@ namespace DomainTest.Models.BacklogPhases
             Assert.IsType<DoingState>(newState);
         }
 
+        [Fact]
+        public void TesterMustRecieveNotification()
+        {
+            var scrumMaster = new Member("foobar", "foobaz");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
+            var member = new Member("Foo", "foo");
+            var item = new Item(member, "bar", sprint);
+            var notifier = new Notifier(sprint);
+
+            var observer = new Mock<IObserver>();
+
+            notifier.AddObserver(observer.Object);
+
+            var context = new BacklogContext(item, notifier);
+            var state = new DoingState(context);
+
+            state.ReadyForTesting();
+
+            observer.Verify(x => x.Update(sprint), Times.Exactly(1));
+        }
+
     }
 }

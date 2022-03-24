@@ -54,7 +54,7 @@ namespace DomainTest.Models.BacklogPhases
 
             var newState = state.ReadyForTesting();
 
-            Assert.IsType<TestedState>(newState);
+            Assert.IsType<ReadyForTestingState>(newState);
         }
 
         [Fact]

@@ -23,17 +23,18 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState ReadyForTesting()
         {
-            return new ReadyForTestingState(Context);
+            return this;
         }
 
         public IBacklogState Tested()
         {
-            return this;
+            return new TestedState(Context);
         }
 
         public IBacklogState Todo()
         {
-            return this;
+            Context.Notifier.Notify();
+            return new TodoState(Context);
         }
 
         public IBacklogState Testing()

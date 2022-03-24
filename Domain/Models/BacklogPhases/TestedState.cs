@@ -23,7 +23,7 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState ReadyForTesting()
         {
-            return this;
+            return new ReadyForTestingState(Context);
         }
 
         public IBacklogState Testing()
