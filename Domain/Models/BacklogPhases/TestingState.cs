@@ -33,7 +33,7 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Todo()
         {
-            return new TodoState(Context);
+            return this;
         }
 
         public IBacklogState Testing()

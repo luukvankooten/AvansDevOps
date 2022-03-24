@@ -5,9 +5,9 @@ using Domain.Models.Notifications;
 using Moq;
 using Xunit;
 
-namespace Domain.Test.Models.BacklogPhases
+namespace DomainTest.Models.BacklogPhases
 {
-    public class TodoTest
+    public class TestedStateTest
     {
         [Fact]
         public void SwitchStateToTodo()
@@ -16,13 +16,13 @@ namespace Domain.Test.Models.BacklogPhases
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
-            var notifier = new Mock<Notifier>();
-            var context = new BacklogContext(item, notifier.Object);
-            var state = new TodoState(context);
+            var notifier = new Notifier(sprint);
+            var context = new BacklogContext(item, notifier);
+            var state = new TestedState(context);
 
             var newState = state.Todo();
 
-            Assert.IsType<TodoState>(newState);
+            Assert.IsType<TestedState>(newState);
         }
 
         [Fact]
@@ -32,13 +32,13 @@ namespace Domain.Test.Models.BacklogPhases
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
-            var notifier = new Mock<Notifier>();
-            var context = new BacklogContext(item, notifier.Object);
-            var state = new TodoState(context);
+            var notifier = new Notifier(sprint);
+            var context = new BacklogContext(item, notifier);
+            var state = new TestedState(context);
 
             var newState = state.Doing();
 
-            Assert.IsType<DoingState>(newState);
+            Assert.IsType<TestedState>(newState);
         }
 
         [Fact]
@@ -48,13 +48,13 @@ namespace Domain.Test.Models.BacklogPhases
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
-            var notifier = new Mock<Notifier>();
-            var context = new BacklogContext(item, notifier.Object);
-            var state = new TodoState(context);
+            var notifier = new Notifier(sprint);
+            var context = new BacklogContext(item, notifier);
+            var state = new TestedState(context);
 
             var newState = state.ReadyForTesting();
 
-            Assert.IsType<TodoState>(newState);
+            Assert.IsType<TestedState>(newState);
         }
 
         [Fact]
@@ -64,13 +64,13 @@ namespace Domain.Test.Models.BacklogPhases
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
-            var notifier = new Mock<Notifier>();
-            var context = new BacklogContext(item, notifier.Object);
-            var state = new TodoState(context);
+            var notifier = new Notifier(sprint);
+            var context = new BacklogContext(item, notifier);
+            var state = new TestedState(context);
 
             var newState = state.Testing();
 
-            Assert.IsType<TodoState>(newState);
+            Assert.IsType<TestedState>(newState);
         }
 
         [Fact]
@@ -80,13 +80,13 @@ namespace Domain.Test.Models.BacklogPhases
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var developer = new Member("Foo", "foo");
             var item = new Item(developer, "bar", sprint);
-            var notifier = new Mock<Notifier>();
-            var context = new BacklogContext(item, notifier.Object);
-            var state = new TodoState(context);
+            var notifier = new Notifier(sprint);
+            var context = new BacklogContext(item, notifier);
+            var state = new TestedState(context);
 
             var newState = state.Tested();
 
-            Assert.IsType<TodoState>(newState);
+            Assert.IsType<TestedState>(newState);
         }
 
         [Fact]
@@ -96,13 +96,13 @@ namespace Domain.Test.Models.BacklogPhases
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
-            var notifier = new Mock<Notifier>();
-            var context = new BacklogContext(item, notifier.Object);
-            var state = new TodoState(context);
+            var notifier = new Notifier(sprint);
+            var context = new BacklogContext(item, notifier);
+            var state = new TestedState(context);
 
             var newState = state.Done();
 
-            Assert.IsType<TodoState>(newState);
+            Assert.IsType<DoneState>(newState);
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 using Domain.Models;
 using Domain.Models.BacklogPhases;
-using Domain.Models.Notifications;
-using Moq;
 using Xunit;
+using Moq;
+using Domain.Models.Notifications;
 
-namespace Domain.Test.Models.BacklogPhases
+namespace DomainTest.Models.BacklogPhases
 {
-    public class ReadyForTestingStateTest
+    public class DoingStateTest
     {
 
         [Fact]
@@ -19,11 +19,11 @@ namespace Domain.Test.Models.BacklogPhases
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
-            var state = new ReadyForTestingState(context);
+            var state = new DoingState(context);
 
             var newState = state.Todo();
 
-            Assert.IsType<ReadyForTestingState>(newState);
+            Assert.IsType<DoingState>(newState);
         }
 
         [Fact]
@@ -35,11 +35,11 @@ namespace Domain.Test.Models.BacklogPhases
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
-            var state = new ReadyForTestingState(context);
+            var state = new DoingState(context);
 
             var newState = state.Doing();
 
-            Assert.IsType<ReadyForTestingState>(newState);
+            Assert.IsType<DoingState>(newState);
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace Domain.Test.Models.BacklogPhases
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
-            var state = new ReadyForTestingState(context);
+            var state = new DoingState(context);
 
             var newState = state.ReadyForTesting();
 
@@ -67,11 +67,11 @@ namespace Domain.Test.Models.BacklogPhases
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
-            var state = new ReadyForTestingState(context);
+            var state = new DoingState(context);
 
             var newState = state.Testing();
 
-            Assert.IsType<TestingState>(newState);
+            Assert.IsType<DoingState>(newState);
         }
 
         [Fact]
@@ -83,11 +83,11 @@ namespace Domain.Test.Models.BacklogPhases
             var item = new Item(developer, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
-            var state = new ReadyForTestingState(context);
+            var state = new DoingState(context);
 
             var newState = state.Tested();
 
-            Assert.IsType<ReadyForTestingState>(newState);
+            Assert.IsType<DoingState>(newState);
         }
 
         [Fact]
@@ -99,11 +99,12 @@ namespace Domain.Test.Models.BacklogPhases
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
-            var state = new ReadyForTestingState(context);
+            var state = new DoingState(context);
 
             var newState = state.Done();
 
-            Assert.IsType<ReadyForTestingState>(newState);
+            Assert.IsType<DoingState>(newState);
         }
+
     }
 }

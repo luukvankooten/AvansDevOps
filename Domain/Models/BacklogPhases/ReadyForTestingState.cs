@@ -32,8 +32,7 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Todo()
         {
-            Context.Notifier.Notify();
-            return new TodoState(Context);
+            return this;
         }
 
         public IBacklogState ReadyForTesting()
