@@ -4,7 +4,7 @@ using Domain.Models.Sprints.Close;
 namespace Domain.Models.Sprints.Stages
 {
     /// <summary>
-    /// The stratergy pattern is here applied
+    /// Part of the state pattern
     /// </summary>
     public class CloseState: ISprintStage
     {

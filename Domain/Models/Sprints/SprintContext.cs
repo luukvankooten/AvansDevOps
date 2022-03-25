@@ -7,7 +7,7 @@ namespace Domain.Models.Sprints
 {
 
     /// <summary>
-    /// Use the state pattern
+    /// Part of the state pattern and strattergy
     /// </summary>
     public abstract class SprintContext
     {

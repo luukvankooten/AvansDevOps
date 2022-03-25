@@ -8,10 +8,12 @@
     <None Remove="Models\Sprints\Close\" />
     <None Remove="Models\Sprints\Stages\" />
     <None Remove="Models\Pipeline\" />
+    <None Remove="Models\Thread\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Sprints\Close\" />
     <Folder Include="Models\Sprints\Stages\" />
     <Folder Include="Models\Pipeline\" />
+    <Folder Include="Models\Thread\" />
   </ItemGroup>
 </Project>

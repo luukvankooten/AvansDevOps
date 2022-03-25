@@ -1,6 +1,9 @@
 ﻿using System;
 namespace Domain.Models.Sprints.Stages
 {
+    /// <summary>
+    /// Part of the state pattern
+    /// </summary>
     public class CancelState: ISprintStage
     {
         public CancelState(SprintContext sprintContext)

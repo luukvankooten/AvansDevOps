@@ -3,6 +3,9 @@ using Domain.Models.Notifications;
 
 namespace Domain.Models.Pipeline
 {
+    /// <summary>
+    /// Visitor pattern
+    /// </summary>
     public class Build: IComponent
     {
         public bool Failed { get; protected set; } = false;

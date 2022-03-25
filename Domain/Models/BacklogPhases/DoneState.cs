@@ -1,6 +1,9 @@
 ﻿using System;
 namespace Domain.Models.BacklogPhases
 {
+    /// <summary>
+    /// State pattern
+    /// </summary>
     public class DoneState : IBacklogState
     {
         public DoneState(BacklogContext context)

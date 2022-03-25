@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Domain.Models.BacklogPhases;
+﻿using System.Collections.Generic;
 
 namespace Domain.Models.Notifications
 {
+    /// <summary>
+    /// Observer pattern
+    /// </summary>
     public class Notifier
     {
 
