@@ -58,7 +58,7 @@ namespace DomainTest.Models.Sprints.Stages
         public void SwitchStateToClose()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Document());
             var notifier = new Notifier(sprint);
             var context = new ReviewSprintContext(sprint, notifier);
             var state = new CloseState(context);

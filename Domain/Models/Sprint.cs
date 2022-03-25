@@ -26,6 +26,7 @@ namespace Domain.Models
             LeadDeveloper = sprint.LeadDeveloper;
             Items = sprint.Items;
             ScrumMaster = sprint.ScrumMaster;
+            Document = sprint.Document;
         }
 
         public string Name { get; set; }
@@ -34,7 +35,7 @@ namespace Domain.Models
 
         public DateTime EndDate { get; set; }
 
-        public IList<Item> Items { get; set; } = new List<Item>();
+        public List<Item> Items { get; set; } = new List<Item>();
 
         public Member ScrumMaster { get; set; }
         public Document? Document { get; set; }
