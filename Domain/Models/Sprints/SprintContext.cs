@@ -41,6 +41,11 @@ namespace Domain.Models.Sprints
             SprintStage = SprintStage.Finish();
         }
 
+        public void Cancel()
+        {
+            SprintStage = SprintStage.Cancel();
+        }
+
         public virtual void Close()
         {
             SprintStage = SprintStage.Close();

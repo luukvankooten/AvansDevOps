@@ -12,12 +12,13 @@ namespace Domain.Models.Sprints.Stages
 
         public ISprintStage Cancel()
         {
-            return this;
+            Context.Notifier.Notify();
+            return new CancelState(Context);
         }
 
         public ISprintStage Close()
         {
-            return new CloseState(Context);
+            return new CloseState(Context).Close();
         }
 
         public ISprintStage Create()
