@@ -13,7 +13,7 @@ namespace DomainTest.Models.Factories
         {
             Member member = new Member("foobar", "foo@bar.com");
             Member scrumMaster = new Member("foobar", "foo@bar.com");
-            Sprint sprint = new Sprint("foobar", DateTime.Now, DateTime.Now, scrumMaster);
+            Sprint sprint = new Sprint("foobar", DateTime.Now, DateTime.Now, scrumMaster, member);
 
             Item item = new Item(member, "foobar", sprint);
 

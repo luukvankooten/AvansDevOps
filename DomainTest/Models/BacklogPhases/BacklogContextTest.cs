@@ -13,7 +13,6 @@ namespace DomainTest.Models.BacklogPhases
         {
             var member = new Member("foobar", "foobaz");
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
@@ -45,7 +44,6 @@ namespace DomainTest.Models.BacklogPhases
         {
             var member = new Member("foobar", "foobaz");
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
@@ -70,9 +68,8 @@ namespace DomainTest.Models.BacklogPhases
         [Fact]
         public void BacklogPhasesLeadDeveloperRejectsItemByDOD()
         {
-            var scrumMaster = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
             var member = new Member("Foo", "foo");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);

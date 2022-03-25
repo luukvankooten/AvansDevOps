@@ -73,8 +73,8 @@ namespace DomainTest.Models.BacklogPhases
         [Fact]
         public void SwitchStateTested()
         {
-            var scrumMaster = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
+            var member = new Member("foobar", "foobaz");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
             var developer = new Member("Foo", "foo");
             var item = new Item(developer, "bar", sprint);
             var notifier = new Notifier(sprint);

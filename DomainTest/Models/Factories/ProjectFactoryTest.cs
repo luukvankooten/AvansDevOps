@@ -12,9 +12,9 @@ namespace DomainTest.Models.Factories
         [Fact]
         public void CreateProject()
         {
-            Member scrumMaster = new Member("foobar", "foo@bar.com");
+            Member member = new Member("foobar", "foo@bar.com");
             Member productOwner = new Member("foobar", "foo@bar.com");
-            Sprint sprint = new Sprint("foobar", DateTime.Now, DateTime.Now, scrumMaster);
+            Sprint sprint = new Sprint("foobar", DateTime.Now, DateTime.Now, member, member);
             List<Sprint> list = new List<Sprint>() { sprint };
 
             Project project = new Project(list, productOwner);
