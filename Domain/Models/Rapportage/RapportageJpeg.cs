@@ -8,20 +8,17 @@
         public RapportageJpeg(Sprint sprint)
             : base(sprint) { }
 
-        public RapportageJpeg()
-            : base(null) { }
-
-        public override bool AddFooter(string content)
+        protected override bool AddFooter(string content)
         {
             return true;
         }
 
-        public override bool AddHeader(string content)
+        protected override bool AddHeader(string content)
         {
             return true;
         }
 
-        public override bool Export()
+        protected override bool Export()
         {
             return true;
         }

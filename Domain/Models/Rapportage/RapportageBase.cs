@@ -12,8 +12,24 @@
             _sprint = sprint;
         }
 
-        public abstract bool AddHeader(string content);
-        public abstract bool AddFooter(string content);
-        public abstract bool Export();
+        public bool Generate(Header header, Footer footer)
+        {
+            return AddHeader(header.Content) && AddFooter(footer.Content) && Export();
+        }
+
+        public bool Generate(Header header)
+        {
+            return AddHeader(header.Content) && Export();
+        }
+
+        public bool Generate(Footer footer)
+        {
+            return AddFooter(footer.Content) && Export();
+        }
+
+        protected virtual bool AddHeader(string content) { return true; }
+        protected virtual bool AddFooter(string content) { return true; }
+
+        protected abstract bool Export();
     }
 }

@@ -38,7 +38,7 @@ namespace Domain.Models
         public List<Item> Items { get; set; } = new List<Item>();
 
         public Member ScrumMaster { get; set; }
-        public Document? Document { get; set; }
+        public Document Document { get; set; }
 
         public Member LeadDeveloper { get; set; }
 

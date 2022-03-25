@@ -35,4 +35,7 @@
     <Folder Include="Models\PipeLine\" />
     <Folder Include="Models\Notifications\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Models\SprintTest.cs" />
+  </ItemGroup>
 </Project>
