@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Domain.Models.Discussions;
 using Domain.Models.Notifications;
 
 namespace Domain.Models.BacklogPhases
@@ -14,11 +13,13 @@ namespace Domain.Models.BacklogPhases
             State = new TodoState(this);
             Item = item;
             Notifier = notifier;
+            ThreadDiscussion = new ThreadDiscussion(item);
         }
 
         public Item Item { get; set; }
         public Notifier Notifier { get; }
         public IBacklogState State { get; set; }
+        public ThreadDiscussion ThreadDiscussion { get; }
 
         public void Doing()
         {
@@ -49,6 +50,5 @@ namespace Domain.Models.BacklogPhases
         {
             State = State.Todo();
         }
-
     }
 }

@@ -14,6 +14,5 @@
     <Folder Include="Models\Sprints\Close\" />
     <Folder Include="Models\Sprints\Stages\" />
     <Folder Include="Models\Pipeline\" />
-    <Folder Include="Models\Thread\" />
   </ItemGroup>
 </Project>

@@ -94,5 +94,27 @@ namespace DomainTest.Models.BacklogPhases
 
             Assert.IsType<ReadyForTestingState>(context.State);
         }
+
+        [Fact]
+        public void BackLogIsDoneDiscussionClose()
+        {
+            //Assert op throw Invalid
+        }
+
+        [Fact]
+        public void BackLogDiscussionIsOpen()
+        {
+
+        }
+
+        [Fact]
+        public void BackLogDiscussionReOpen()
+        {
+            //1. thread open discussies toegevoed
+            //2. kaart in Done discussie gesloten
+            //3. kaart terug naar todo
+            //4. Thread discusie item toevoegen
+        }
+
     }
 }

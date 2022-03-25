@@ -35,7 +35,8 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Todo()
         {
-            return this;
+            Context.ThreadDiscussion.IsClosed = false;
+            return new TodoState(Context);
         }
 
         public IBacklogState Done()
