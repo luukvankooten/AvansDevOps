@@ -5,7 +5,7 @@ namespace Domain.Models.Sprints.Close
     {
         public void Close(Sprint sprint)
         {
-            if(sprint.Document != null)
+            if(sprint.Document == null)
             {
                 throw new InvalidProgramException("Document must be uploaded");
             }

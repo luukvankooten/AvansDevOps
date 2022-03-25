@@ -26,5 +26,13 @@
 
   <ItemGroup>
     <None Remove="Moq" />
+    <None Remove="Models\Sprints\Close\" />
+    <None Remove="Models\PipeLine\" />
+    <None Remove="Models\Notifier\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Sprints\Close\" />
+    <Folder Include="Models\PipeLine\" />
+    <Folder Include="Models\Notifications\" />
   </ItemGroup>
 </Project>
