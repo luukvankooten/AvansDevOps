@@ -11,8 +11,8 @@ namespace DomainTest.Models.BacklogPhases
         [Fact]
         public void BacklogPhashesSuccesItem()
         {
-            var scrumMaster = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
+            var member = new Member("foobar", "foobaz");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
@@ -43,8 +43,8 @@ namespace DomainTest.Models.BacklogPhases
         [Fact]
         public void BacklogPhasesTesterRejectsItem()
         {
-            var scrumMaster = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
+            var member = new Member("foobar", "foobaz");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
             var member = new Member("Foo", "foo");
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);

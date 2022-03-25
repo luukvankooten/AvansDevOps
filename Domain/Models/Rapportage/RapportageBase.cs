@@ -5,9 +5,9 @@
     /// </summary>
     public abstract class RapportageBase
     {
-        protected Sprints.Sprint _sprint;
+        protected Sprint _sprint;
 
-        public RapportageBase(Sprints.Sprint sprint)
+        public RapportageBase(Sprint sprint)
         {
             _sprint = sprint;
         }

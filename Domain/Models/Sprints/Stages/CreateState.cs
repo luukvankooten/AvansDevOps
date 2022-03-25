@@ -31,7 +31,11 @@ namespace Domain.Models.Sprints.Stages
 
         public ISprintStage Execute()
         {
-            return new ExecuteState(SprintContext);
+            if(SprintContext.Sprint.StartTime >= DateTime.Today) {
+                return new ExecuteState(SprintContext);
+            }
+
+            return this;            
         }
 
         public ISprintStage Finish()

@@ -17,10 +17,11 @@ namespace Domain.Models.Sprints
         public Notifier Notifier { get; }
         public ISprintStage SprintStage { get; protected set; }
 
-        public SprintContext(CreateState sprintStage, ICloseBehavior closeBehavior, Notifier notifier)
+        public SprintContext(Sprint sprint, ICloseBehavior closeBehavior, Notifier notifier)
         {
-            SprintStage = sprintStage;
-            Sprint = sprintStage.Sprint;
+            var cSprint = new Sprint(sprint);
+            SprintStage = new CreateState(this, cSprint);
+            Sprint = cSprint;
             CloseBehavior = closeBehavior;
             Notifier = notifier;
         }

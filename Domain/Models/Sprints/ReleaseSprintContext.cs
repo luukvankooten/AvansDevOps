@@ -9,7 +9,7 @@ namespace Domain.Models.Sprints
     /// </summary>
     public class ReleaseSprintContext : SprintContext
     {
-        public ReleaseSprintContext(CreateState sprintStage, PipeLineBehavior pipeLineBehavior, Notifier notifier) : base(sprintStage, pipeLineBehavior, notifier)
+        public ReleaseSprintContext(Sprint sprint, PipeLineBehavior pipeLineBehavior, Notifier notifier) : base(sprint, pipeLineBehavior, notifier)
         {
         }
     }

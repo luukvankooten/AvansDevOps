@@ -3,24 +3,43 @@ using System.Collections.Generic;
 
 namespace Domain.Models
 {
+    /// <summary>
+    /// Visitor pattern
+    /// </summary>
     public class Sprint
     {
-        public Sprint(string name, DateTime startDate, DateTime endDate, Member scrumMaster)
+        public Sprint(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, Document document = null)
         {
             Name = name;
-            StartDate = startDate;
+            StartTime = startTime;
             EndDate = endDate;
+            LeadDeveloper = leadDeveloper;
             ScrumMaster = scrumMaster;
+            Document = document;
+        }
+
+        public Sprint(Sprint sprint)
+        {
+            Name = sprint.Name;
+            StartTime = sprint.StartTime;
+            EndDate = sprint.EndDate;
+            LeadDeveloper = sprint.LeadDeveloper;
+            Items = sprint.Items;
+            ScrumMaster = sprint.ScrumMaster;
         }
 
         public string Name { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime StartTime { get; set; }
 
         public DateTime EndDate { get; set; }
 
-        public Member ScrumMaster { get; set; }
+        public IList<Item> Items { get; set; } = new List<Item>();
 
-        public IList<Item> Items { get; } = new List<Item>();
+        public Member ScrumMaster { get; set; }
+        public Document? Document { get; set; }
+
+        public Member LeadDeveloper { get; set; }
+
     }
 }

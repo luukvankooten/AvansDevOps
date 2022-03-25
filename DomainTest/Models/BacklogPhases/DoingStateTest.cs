@@ -13,9 +13,8 @@ namespace DomainTest.Models.BacklogPhases
         [Fact]
         public void SwitchStateToTodo()
         {
-            var scrumMaster = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
-            var member = new Member("Foo", "foo");
+            var member = new Member("foobar", "foobaz");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
@@ -29,9 +28,8 @@ namespace DomainTest.Models.BacklogPhases
         [Fact]
         public void SwitchStateToDoing()
         {
-            var scrumMaster = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
-            var member = new Member("Foo", "foo");
+            var member = new Member("foobar", "foobaz");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
@@ -45,9 +43,8 @@ namespace DomainTest.Models.BacklogPhases
         [Fact]
         public void SwitchStateToReadyForTesting()
         {
-            var scrumMaster = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
-            var member = new Member("Foo", "foo");
+            var member = new Member("foobar", "foobaz");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
@@ -61,9 +58,8 @@ namespace DomainTest.Models.BacklogPhases
         [Fact]
         public void SwitchStateToTesting()
         {
-            var scrumMaster = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
-            var member = new Member("Foo", "foo");
+            var member = new Member("foobar", "foobaz");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
@@ -93,9 +89,8 @@ namespace DomainTest.Models.BacklogPhases
         [Fact]
         public void SwitchStateToDone()
         {
-            var scrumMaster = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
-            var member = new Member("Foo", "foo");
+            var member = new Member("foobar", "foobaz");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
             var context = new BacklogContext(item, notifier);
@@ -109,9 +104,8 @@ namespace DomainTest.Models.BacklogPhases
         [Fact]
         public void TesterMustRecieveNotification()
         {
-            var scrumMaster = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, scrumMaster);
-            var member = new Member("Foo", "foo");
+            var member = new Member("foobar", "foobaz");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
             var item = new Item(member, "bar", sprint);
             var notifier = new Notifier(sprint);
 

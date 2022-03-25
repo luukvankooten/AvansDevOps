@@ -9,10 +9,7 @@ namespace Domain.Models.Sprints
     /// </summary>
     public class ReviewSprintContext : SprintContext
     {
-
-        public Document Document { get; set; }
-
-        public ReviewSprintContext(CreateState sprintStage, Notifier notifier) : base(sprintStage, new ReviewBehavior(), notifier)
+        public ReviewSprintContext(Sprint sprint, Notifier notifier) : base(sprint, new ReviewBehavior(), notifier)
         {
         }
     }

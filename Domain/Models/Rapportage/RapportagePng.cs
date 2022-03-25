@@ -5,7 +5,7 @@
     /// </summary>
     public class RapportagePng : RapportageBase
     {
-        public RapportagePng(Sprints.Sprint sprint)
+        public RapportagePng(Sprint sprint)
             : base(sprint) { }
 
         public RapportagePng()

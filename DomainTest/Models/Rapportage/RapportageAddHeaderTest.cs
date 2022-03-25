@@ -2,7 +2,6 @@
 using System;
 using Moq;
 using Xunit;
-using Sprint = Domain.Models.Sprints.Sprint;
 using Domain.Models.Rapportage;
 
 namespace DomainTest.Models.Rapportage

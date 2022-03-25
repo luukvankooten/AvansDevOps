@@ -26,5 +26,19 @@
 
   <ItemGroup>
     <None Remove="Moq" />
+    <None Remove="Models\Sprint\" />
+    <None Remove="Models\Sprint\Stages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Models\BacklogPhases\DoneStateTest.cs" />
+    <Compile Remove="Models\BacklogPhases\DoingStateTest.cs" />
+    <Compile Remove="Models\BacklogPhases\TodoStateTest.cs" />
+    <Compile Remove="Models\BacklogPhases\TestingStateTest.cs" />
+    <Compile Remove="Models\BacklogPhases\TestedStateTest.cs" />
+    <Compile Remove="Models\BacklogPhases\BacklogContextTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Sprint\" />
+    <Folder Include="Models\Sprint\Stages\" />
   </ItemGroup>
 </Project>
