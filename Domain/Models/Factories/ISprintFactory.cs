@@ -7,6 +7,8 @@ namespace Domain.Models.Factories
     /// </summary>
     public interface ISprintFactory
     {
-        Sprint CreateReview(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, Document document = null);
+        Sprint Create(Sprint sprint);
+        Sprint Create(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster);
+        Sprint Create(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, Document document);
     }
 }

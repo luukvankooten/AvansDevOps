@@ -7,9 +7,19 @@ namespace Domain.Models.Factories
     /// </summary>
     public class SprintConcreteFactory : ISprintFactory
     {
-        Sprint ISprintFactory.CreateReview(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, Document document)
+        public virtual Sprint Create(Sprint sprint)
         {
-            throw new NotImplementedException();
+            return new Sprint(sprint);
+        }
+
+        public virtual Sprint Create(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster)
+        {
+            return new Sprint(name, startTime, endDate, leadDeveloper, scrumMaster);
+        }
+
+        public virtual Sprint Create(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, Document document)
+        {
+            return new Sprint(name, startTime, endDate, leadDeveloper, scrumMaster, document);
         }
     }
 }
