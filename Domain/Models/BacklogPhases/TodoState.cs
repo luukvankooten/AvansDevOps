@@ -15,6 +15,7 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Doing()
         {
+            Context.ThreadDiscussion.IsClosed = false;
             return new DoingState(Context);
         }
 

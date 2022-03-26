@@ -4,11 +4,11 @@ using System.Collections.Generic;
 namespace Domain.Models.Discussions
 {
     /// <summary>
-    /// Compiste pattern
+    /// Composite pattern
     /// </summary>
     public class ThreadDiscussion
     {
-        private List<Discussion> Discussoins { get; } = new();
+        private List<Discussion> Discussions { get; } = new();
 
         public bool IsClosed { get; set; }
 
@@ -24,15 +24,15 @@ namespace Domain.Models.Discussions
         {
             if(IsClosed)
             {
-                throw new InvalidOperationException("Discussion is close");
+                throw new InvalidOperationException("Discussion is closed");
             }
 
-            Discussoins.Add(discussion);
+            Discussions.Add(discussion);
         }
 
         public bool HasDiscussion(Discussion discussion)
         {
-            return this.Discussoins.Contains(discussion);
+            return this.Discussions.Contains(discussion);
         }
     }
 }

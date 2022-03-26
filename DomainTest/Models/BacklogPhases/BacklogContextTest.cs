@@ -1,6 +1,7 @@
 ﻿using System;
 using Domain.Models;
 using Domain.Models.BacklogPhases;
+using Domain.Models.Discussions;
 using Domain.Models.Notifications;
 using Xunit;
 
@@ -98,22 +99,66 @@ namespace DomainTest.Models.BacklogPhases
         [Fact]
         public void BackLogIsDoneDiscussionClose()
         {
-            //Assert op throw Invalid
+            var member = new Member("Foo", "foo");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
+            var item = new Item(member, "bar", sprint);
+            var notifier = new Notifier(sprint);
+            var context = new BacklogContext(item, notifier);
+            var discussion = new Discussion("Foo", "bar", member);
+
+            context.Doing();
+            // Na doing, discussie geopend
+
+            context.ReadyForTesting();
+            context.Testing();
+            context.Tested();
+            context.Done();
+            // Na done, discussie gesloten
+
+            Assert.Throws(new InvalidOperationException().GetType(), () => context.ThreadDiscussion.AddDiscussion(discussion));
         }
 
         [Fact]
         public void BackLogDiscussionIsOpen()
         {
+            var member = new Member("Foo", "foo");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
+            var item = new Item(member, "bar", sprint);
+            var notifier = new Notifier(sprint);
+            var context = new BacklogContext(item, notifier);
+            var discussion = new Discussion("Foo", "bar", member);
 
+            context.Doing();
+            // Na doing, discussie geopend
+
+            Assert.Null(Record.Exception(() => context.ThreadDiscussion.AddDiscussion(discussion)));
         }
 
         [Fact]
         public void BackLogDiscussionReOpen()
         {
-            //1. thread open discussies toegevoed
-            //2. kaart in Done discussie gesloten
-            //3. kaart terug naar todo
-            //4. Thread discusie item toevoegen
+            var member = new Member("Foo", "foo");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
+            var item = new Item(member, "bar", sprint);
+            var notifier = new Notifier(sprint);
+            var context = new BacklogContext(item, notifier);
+            var discussion = new Discussion("Foo", "bar", member);
+
+            context.Doing();
+            // Na doing, discussie geopend
+
+            context.ReadyForTesting();
+            context.Testing();
+            context.Tested();
+            context.Done();
+            // Na done, discussie gesloten
+
+            Assert.Throws(new InvalidOperationException().GetType(), () => context.ThreadDiscussion.AddDiscussion(discussion));
+
+            context.Todo();
+            // Na Todo, discussie weer geopend
+
+            Assert.Null(Record.Exception(() => context.ThreadDiscussion.AddDiscussion(discussion)));
         }
 
     }
