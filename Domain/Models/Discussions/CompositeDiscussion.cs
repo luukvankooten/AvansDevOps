@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Domain.Models.Discussions
 {
     /// <summary>
@@ -18,6 +20,11 @@ namespace Domain.Models.Discussions
             Subject = subject;
             Comment = comment;
             Member = member;
+        }
+
+        public virtual List<CompositeDiscussion>.Enumerator GetCompositions()
+        {
+            return new List<CompositeDiscussion>().GetEnumerator();
         }
 
         public virtual void Add(CompositeDiscussion component)

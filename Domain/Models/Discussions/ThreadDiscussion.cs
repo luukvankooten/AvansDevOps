@@ -34,5 +34,10 @@ namespace Domain.Models.Discussions
         {
             return this.Discussions.Contains(discussion);
         }
+
+        public List<Discussion>.Enumerator GetDiscussions()
+        {
+            return Discussions.GetEnumerator();
+        }
     }
 }

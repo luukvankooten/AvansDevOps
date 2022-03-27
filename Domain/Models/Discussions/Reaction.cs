@@ -8,8 +8,6 @@ namespace Domain.Models.Discussions
     /// </summary>
     public class Reaction : CompositeDiscussion
     {
-        protected List<Reaction> reactions = new();
-
         public Reaction(string subject, string comment, Member member) : base(subject, comment, member)
         {
         }
