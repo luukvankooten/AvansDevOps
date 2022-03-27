@@ -14,8 +14,18 @@ namespace Domain.Models.Discussions
         {
         }
 
+        public override List<CompositeDiscussoin>.Enumerator GetCompistions()
+        {
+            return Reactions.GetEnumerator();
+        }
+
         public override void Add(CompositeDiscussoin component)
         {
+            if(component.IsComposite())
+            {
+                throw new InvalidOperationException("Composite components could not be added to discussions");
+            }
+
             Reactions.Add(component);
         }
 
