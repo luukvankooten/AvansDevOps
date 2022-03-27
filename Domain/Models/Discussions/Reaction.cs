@@ -6,7 +6,7 @@ namespace Domain.Models.Discussions
     /// <summary>
     /// Compiste pattern
     /// </summary>
-    public class Reaction: CompositeDiscussoin
+    public class Reaction : CompositeDiscussion
     {
         protected List<Reaction> reactions = new();
 

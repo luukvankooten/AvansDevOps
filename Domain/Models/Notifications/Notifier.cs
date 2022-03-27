@@ -7,7 +7,6 @@ namespace Domain.Models.Notifications
     /// </summary>
     public class Notifier
     {
-
         private List<IObserver> observers = new List<IObserver>();
 
         public Notifier(Sprint sprint)

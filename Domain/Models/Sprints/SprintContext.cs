@@ -9,7 +9,7 @@ namespace Domain.Models.Sprints
     /// <summary>
     /// Part of the state pattern and strattergy
     /// </summary>
-    public abstract class SprintContext
+    public class SprintContext
     {
 
         public Sprint Sprint { get; }
