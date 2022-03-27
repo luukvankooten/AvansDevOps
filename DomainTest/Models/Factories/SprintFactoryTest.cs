@@ -14,14 +14,15 @@ namespace DomainTest.Models.Factories
             DateTime now = DateTime.Now;
             Member leadDeveloper = new Member("foobar", "foo@bar.com");
             Member scrumMaster = new Member("foobar", "foo@bar.com");
-            Member productOwner = new Member("foobar", "foo@bar.com");
             Sprint sprint = new Sprint("foobar", now, now, leadDeveloper, scrumMaster);
 
-            Mock<SprintConcreteFactory> factoryMock = new Mock<SprintConcreteFactory>();
+            SprintConcreteFactory factory = new SprintConcreteFactory();
 
-            factoryMock.Setup(x => x.Create(sprint)).Returns(sprint);
+            var cloneSprint = factory.Create(sprint);
 
-            Assert.Equal(sprint, factoryMock.Object.Create(sprint));
+            Assert.NotEqual(sprint, cloneSprint);
+            Assert.Equal(sprint.StartTime, now);
+            Assert.Equal(sprint.EndDate, now);
         }
 
         [Fact]
@@ -30,13 +31,14 @@ namespace DomainTest.Models.Factories
             DateTime now = DateTime.Now;
             Member leadDeveloper = new Member("foobar", "foo@bar.com");
             Member scrumMaster = new Member("foobar", "foo@bar.com");
-            Member productOwner = new Member("foobar", "foo@bar.com");
-            Sprint sprint = new Sprint("foobar", now, now, leadDeveloper, scrumMaster);
 
-            Mock<SprintConcreteFactory> factoryMock = new Mock<SprintConcreteFactory>();
-            factoryMock.Setup(x => x.Create("foobar", now, now, leadDeveloper, scrumMaster)).Returns(sprint);
+            SprintConcreteFactory factory = new SprintConcreteFactory();
 
-            Assert.Equal(sprint, factoryMock.Object.Create("foobar", now, now, leadDeveloper, scrumMaster));
+            var sprint = factory.Create("foobar", now, now, leadDeveloper, scrumMaster);
+
+            Assert.Equal("foobar", sprint.Name);
+            Assert.Equal(leadDeveloper, sprint.LeadDeveloper);
+            Assert.IsType<Sprint>(sprint);
         }
 
         [Fact]
@@ -45,14 +47,15 @@ namespace DomainTest.Models.Factories
             DateTime now = DateTime.Now;
             Member leadDeveloper = new Member("foobar", "foo@bar.com");
             Member scrumMaster = new Member("foobar", "foo@bar.com");
-            Member productOwner = new Member("foobar", "foo@bar.com");
             Document doc = new Document();
-            Sprint sprint = new Sprint("foobar", now, now, leadDeveloper, scrumMaster, doc);
 
-            Mock<SprintConcreteFactory> factoryMock = new Mock<SprintConcreteFactory>();
-            factoryMock.Setup(x => x.Create("foobar", now, now, leadDeveloper, scrumMaster, doc)).Returns(sprint);
+            SprintConcreteFactory factory = new SprintConcreteFactory();
 
-            Assert.Equal(sprint, factoryMock.Object.Create("foobar", now, now, leadDeveloper, scrumMaster, doc));
+            var sprint  = factory.Create("foobar", now, now, leadDeveloper, scrumMaster, doc);
+
+            Assert.Equal(doc, sprint.Document);
+            Assert.IsType<Sprint>(sprint);
+
         }
     }
 }

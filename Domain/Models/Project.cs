@@ -15,5 +15,7 @@ namespace Domain.Models
 
         public Member ProductOwner { get; set; }
 
+        public string SCM { get; set; }
+
     }
 }
