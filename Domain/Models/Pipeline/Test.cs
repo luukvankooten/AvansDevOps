@@ -6,7 +6,7 @@ namespace Domain.Models.Pipeline
     /// </summary>
     public class Test : IComponent
     {
-        public int TestCovarege {get; set;} = 0;
+        public double TestCoverage { get; set; } = 0;
 
         public Test()
         {
