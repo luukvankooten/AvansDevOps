@@ -21,7 +21,7 @@ namespace DomainTest.Models.BacklogPhases
 
             var newState = state.Todo();
 
-            Assert.IsType<DoneState>(newState);
+            Assert.IsType<TodoState>(newState);
         }
 
         [Fact]

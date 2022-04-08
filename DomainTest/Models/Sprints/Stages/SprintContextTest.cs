@@ -36,7 +36,7 @@ namespace DomainTest.Models.Sprints.Stages
 
             context.Close();
 
-            Assert.IsType<FinishState>(context.SprintStage);
+            Assert.IsType<CloseState>(context.SprintStage);
         }
 
         [Fact]
