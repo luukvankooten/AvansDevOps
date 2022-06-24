@@ -104,7 +104,7 @@ namespace DomainTest.Models.BacklogPhases
 
             state.ReadyForTesting();
 
-            observer.Verify(x => x.Update(sprint), Times.Exactly(1));
+            observer.Verify(x => x.Update(context), Times.Exactly(1));
         }
 
     }

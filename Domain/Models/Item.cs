@@ -15,6 +15,7 @@ namespace Domain.Models
             Description = description;
             Sprint = sprint;
             ThreadDiscussion = new ThreadDiscussion(this);
+            State = new TodoState(this);
         }
 
         public Member Developer { get; set; }

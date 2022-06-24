@@ -33,8 +33,13 @@ namespace DomainTest.Models.Discussions
             var thread = new ThreadDiscussion(item);
 
             var discussion = new Discussion("foo", "baz", member);
-
-
+            
+            item.Doing();
+            item.ReadyForTesting();
+            item.Testing();
+            item.Tested();
+            item.Done();
+            
             Assert.Throws<InvalidOperationException>(() => thread.AddDiscussion(discussion));
             Assert.False(thread.HasDiscussion(discussion));
         }

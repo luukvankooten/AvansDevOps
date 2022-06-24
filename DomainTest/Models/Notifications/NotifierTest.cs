@@ -19,19 +19,15 @@ namespace DomainTest.Models.Notifications
 
             var member = new Member("foobar", "foobaz");
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            
+            sprint.AddObserver(observer1.Object);
+            sprint.AddObserver(observer2.Object);
 
-            var mock = new Mock<Notifier>();
+            sprint.Notify();
 
-            var notifier = mock.Object;
+            sprint.DetachObserver(observer2.Object);
 
-            notifier.AddObserver(observer1.Object);
-            notifier.AddObserver(observer2.Object);
-
-            notifier.Notify();
-
-            notifier.DetachObserver(observer2.Object);
-
-            notifier.Notify();
+            sprint.Notify();
 
             observer1.Verify(x => x.Update(sprint), Times.Exactly(2));
             observer2.Verify(x => x.Update(sprint), Times.Exactly(1));

@@ -15,7 +15,7 @@ namespace Domain.Models.Sprints.Stages
 
         public ISprintStage Cancel()
         {
-            //Context.Notifier.Notify();
+            Context.Notify();
             return new CancelState(Context);
         }
 

@@ -39,7 +39,7 @@ namespace DomainTest.Models.Sprints.Stages
         {
             var startTime = DateTime.Today.AddDays(-4);
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var context = new Sprint("bas", startTime, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var state = new CreateState(context);
 
             var newState = state.Execute();

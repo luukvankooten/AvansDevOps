@@ -21,7 +21,7 @@ namespace Domain.Models.Notifications
 
         public void Notify()
         {
-            foreach (ISprintObserver o in observers)
+            foreach (var o in observers)
             {
                 Update(o);
             }

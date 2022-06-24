@@ -12,8 +12,7 @@ namespace Domain.Models.BacklogPhases
         }
 
         public Item Context { get; set; }
-
-
+        
         public IBacklogState Doing()
         {
             return this;
@@ -21,7 +20,6 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Done()
         {
-            //Context.ThreadDiscussion.IsClosed = true;
             return new DoneState(Context);
         }
 

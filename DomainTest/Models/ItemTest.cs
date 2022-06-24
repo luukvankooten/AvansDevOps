@@ -158,8 +158,8 @@ namespace DomainTest.Models
             var member = new Member("Foo", "foo");
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var context = new Item(member, "bar", sprint);
-
-            context.ReadyForTesting();
+            sprint.Execute();
+            // context.Doing();
             // Na done
 
             Assert.Throws(new InvalidOperationException().GetType(), () => context.AddSubItem(member, "Hello"));

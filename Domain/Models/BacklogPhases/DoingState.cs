@@ -21,7 +21,7 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState ReadyForTesting()
         {
-
+            Context.Notify();
             return new ReadyForTestingState(Context);
         }
 
