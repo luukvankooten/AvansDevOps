@@ -6,12 +6,12 @@ namespace Domain.Models.BacklogPhases
     /// </summary>
     public class DoneState : IBacklogState
     {
-        public DoneState(BacklogContext context)
+        public DoneState(Item context)
         {
             Context = context;
         }
 
-        public BacklogContext Context { get; set; }
+        public Item Context { get; set; }
 
         public IBacklogState Doing()
         {
@@ -35,7 +35,6 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Todo()
         {
-            Context.ThreadDiscussion.IsClosed = false;
             return new TodoState(Context);
         }
 

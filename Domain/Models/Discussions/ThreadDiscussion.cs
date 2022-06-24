@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Domain.Models.BacklogPhases;
 
 namespace Domain.Models.Discussions
 {
@@ -9,8 +10,6 @@ namespace Domain.Models.Discussions
     public class ThreadDiscussion
     {
         private List<Discussion> Discussions { get; } = new();
-
-        public bool IsClosed { get; set; }
 
         public ThreadDiscussion(Item item)
         {
@@ -22,7 +21,7 @@ namespace Domain.Models.Discussions
 
         public void AddDiscussion(Discussion discussion)
         {
-            if(IsClosed)
+            if(Item.State is DoneState)
             {
                 throw new InvalidOperationException("Discussion is closed");
             }

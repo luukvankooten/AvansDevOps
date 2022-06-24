@@ -5,34 +5,29 @@ namespace Domain.Models.Notifications
     /// <summary>
     /// Observer pattern
     /// </summary>
-    public class Notifier
+    public abstract class Notifier
     {
-        private List<IObserver> observers = new List<IObserver>();
+        private List<ISprintObserver> observers = new();
 
-        public Notifier(Sprint sprint)
-        {
-            Sprint = sprint;
-        }
-
-        public Sprint Sprint { get; }
-
-        public void AddObserver(IObserver observer)
+        public void AddObserver(ISprintObserver observer)
         {
             observers.Add(observer);
         }
 
-        public void DetachObserver(IObserver observer)
+        public void DetachObserver(ISprintObserver observer)
         {
             observers.Remove(observer);
         }
 
         public void Notify()
         {
-            foreach (IObserver o in observers)
+            foreach (ISprintObserver o in observers)
             {
-                o.Update(Sprint);
+                Update(o);
             }
         }
+
+        protected abstract void Update(ISprintObserver observer);
 
     }
 }

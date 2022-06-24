@@ -2,6 +2,8 @@
 using Domain.Models.Rapportage;
 using Domain.Models;
 using Xunit;
+using Domain.Models.Sprints.Close;
+using Moq;
 
 namespace DomainTest.Models.Rapportage
 {
@@ -11,7 +13,7 @@ namespace DomainTest.Models.Rapportage
         public void GenerateWithHeaderAndFooter()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var generator = new RapportagePng(sprint);
 
             var header = new Header("Baz");
@@ -24,7 +26,7 @@ namespace DomainTest.Models.Rapportage
         public void GenerateWithHeader()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var generator = new RapportagePng(sprint);
 
             var header = new Header("Baz");
@@ -36,7 +38,7 @@ namespace DomainTest.Models.Rapportage
         public void GenerateWithFooter()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var generator = new RapportagePng(sprint);
 
             var footer = new Footer("Foo");

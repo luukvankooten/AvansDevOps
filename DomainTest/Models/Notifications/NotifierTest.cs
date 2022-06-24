@@ -1,6 +1,7 @@
 ﻿using System;
 using Domain.Models;
 using Domain.Models.Notifications;
+using Domain.Models.Sprints.Close;
 using Moq;
 using Xunit;
 
@@ -13,13 +14,15 @@ namespace DomainTest.Models.Notifications
         [Fact]
         public void NotifierShouldCallObserverMethodCall()
         {
-            var observer1 = new Mock<IObserver>();
-            var observer2 = new Mock<IObserver>();
+            var observer1 = new Mock<ISprintObserver>();
+            var observer2 = new Mock<ISprintObserver>();
 
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
 
-            var notifier = new Notifier(sprint);
+            var mock = new Mock<Notifier>();
+
+            var notifier = mock.Object;
 
             notifier.AddObserver(observer1.Object);
             notifier.AddObserver(observer2.Object);

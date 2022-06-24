@@ -2,6 +2,7 @@
 using Domain.Models;
 using Domain.Models.BacklogPhases;
 using Domain.Models.Notifications;
+using Domain.Models.Sprints.Close;
 using Moq;
 using Xunit;
 
@@ -13,10 +14,8 @@ namespace DomainTest.Models.BacklogPhases
         public void SwitchStateToTodo()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var item = new Item(member, "bar", sprint);
-            var notifier = new Notifier(sprint);
-            var context = new BacklogContext(item, notifier);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, "bar", sprint);
             var state = new TestedState(context);
 
             var newState = state.Todo();
@@ -28,10 +27,8 @@ namespace DomainTest.Models.BacklogPhases
         public void SwitchStateToDoing()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var item = new Item(member, "bar", sprint);
-            var notifier = new Notifier(sprint);
-            var context = new BacklogContext(item, notifier);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, "bar", sprint);
             var state = new TestedState(context);
 
             var newState = state.Doing();
@@ -43,10 +40,8 @@ namespace DomainTest.Models.BacklogPhases
         public void SwitchStateToReadyForTesting()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var item = new Item(member, "bar", sprint);
-            var notifier = new Notifier(sprint);
-            var context = new BacklogContext(item, notifier);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, "bar", sprint);
             var state = new TestedState(context);
 
             var newState = state.ReadyForTesting();
@@ -58,10 +53,8 @@ namespace DomainTest.Models.BacklogPhases
         public void SwitchStateToTesting()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var item = new Item(member, "bar", sprint);
-            var notifier = new Notifier(sprint);
-            var context = new BacklogContext(item, notifier);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, "bar", sprint);
             var state = new TestedState(context);
 
             var newState = state.Testing();
@@ -73,10 +66,8 @@ namespace DomainTest.Models.BacklogPhases
         public void SwitchStateTested()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var item = new Item(member, "bar", sprint);
-            var notifier = new Notifier(sprint);
-            var context = new BacklogContext(item, notifier);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, "bar", sprint);
             var state = new TestedState(context);
 
             var newState = state.Tested();
@@ -88,10 +79,8 @@ namespace DomainTest.Models.BacklogPhases
         public void SwitchStateToDone()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var item = new Item(member, "bar", sprint);
-            var notifier = new Notifier(sprint);
-            var context = new BacklogContext(item, notifier);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, "bar", sprint);
             var state = new TestedState(context);
 
             var newState = state.Done();

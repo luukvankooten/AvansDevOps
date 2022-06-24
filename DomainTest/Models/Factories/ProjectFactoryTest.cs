@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Domain.Models.Factories;
+using Domain.Models.Sprints.Close;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace DomainTest.Models.Factories
         {
             Member member = new Member("foobar", "foo@bar.com");
             Member productOwner = new Member("foobar", "foo@bar.com");
-            Sprint sprint = new Sprint("foobar", DateTime.Now, DateTime.Now, member, member);
+            Sprint sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             List<Sprint> list = new List<Sprint>() { sprint };
 
             Project project = new Project(list, productOwner);

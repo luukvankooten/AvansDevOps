@@ -1,28 +1,60 @@
 ﻿using System;
 using Domain.Models;
+using Domain.Models.Notifications;
+using Domain.Models.Sprints;
+using Domain.Models.Sprints.Close;
+using Domain.Models.Sprints.Stages;
+using Moq;
 using Xunit;
 
 namespace DomainTest.Models
 {
     public class SprintTest
     {
-        public SprintTest()
+        [Fact]
+        public void SprintContextHappyStateTest()
         {
+            var member = new Member("foobar", "foobaz");
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+
+            context.Create();
+
+            Assert.IsType<CreateState>(context.SprintStage);
+
+            context.Execute();
+
+            Assert.IsType<ExecuteState>(context.SprintStage);
+
+            context.Finish();
+
+            Assert.IsType<FinishState>(context.SprintStage);
+
+            context.Close();
+
+            Assert.IsType<CloseState>(context.SprintStage);
         }
 
         [Fact]
-        public void CopyConstructorShouldCopyToNewInstance()
+        public void SprintContextCancelStateTest()
         {
-            var member = new Member("Foo", "Baz");
+            var member = new Member("foobar", "foobaz");
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
 
-            var sprint = new Sprint("foo", DateTime.Now, DateTime.Now, member, member);
+            context.Create();
 
-            var copySprint = new Sprint(sprint);
+            Assert.IsType<CreateState>(context.SprintStage);
 
-            Assert.Equal(copySprint.Document, sprint.Document);
-            Assert.Equal(copySprint.Name, sprint.Name);
-            Assert.Equal(copySprint.StartTime, sprint.StartTime);
-            Assert.Equal(copySprint.EndDate, sprint.EndDate);
+            context.Execute();
+
+            Assert.IsType<ExecuteState>(context.SprintStage);
+
+            context.Finish();
+
+            Assert.IsType<FinishState>(context.SprintStage);
+
+            context.Cancel();
+
+            Assert.IsType<CancelState>(context.SprintStage);
         }
     }
 }

@@ -6,12 +6,12 @@ namespace Domain.Models.BacklogPhases
     /// </summary>
     public class TestingState : IBacklogState
     {
-        public TestingState(BacklogContext context)
+        public TestingState(Item context)
         {
             Context = context;
         }
 
-        public BacklogContext Context { get; set; }
+        public Item Context { get; set; }
 
        
         public IBacklogState Doing()
@@ -36,7 +36,7 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Todo()
         {
-            Context.Notifier.Notify();
+            //Context.Notifier.Notify();
             return new TodoState(Context);
         }
 

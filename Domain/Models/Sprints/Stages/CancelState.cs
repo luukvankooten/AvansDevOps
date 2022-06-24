@@ -6,12 +6,12 @@ namespace Domain.Models.Sprints.Stages
     /// </summary>
     public class CancelState: ISprintStage
     {
-        public CancelState(SprintContext sprintContext)
+        public CancelState(Sprint context)
         {
-            SprintContext = sprintContext;
+            Context = context;
         }
 
-        public SprintContext SprintContext { get; }
+        public Sprint Context { get; }
 
         public ISprintStage Cancel()
         {

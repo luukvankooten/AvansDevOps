@@ -3,6 +3,7 @@ using Domain.Models.Pipeline;
 using Domain.Models;
 using Moq;
 using Xunit;
+using Domain.Models.Sprints.Close;
 
 namespace DomainTest.Models.PipeLine
 {
@@ -13,7 +14,8 @@ namespace DomainTest.Models.PipeLine
         {
             var visitor = new Mock<IVisitor>();
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+
 
             var component = new Deploy();
 

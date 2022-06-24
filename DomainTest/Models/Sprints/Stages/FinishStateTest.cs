@@ -15,9 +15,7 @@ namespace DomainTest.Models.Sprints.Stages
         public void SwitchStateToCreate()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var notifier = new Notifier(sprint);
-            var context = new ReviewSprintContext(sprint, notifier);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var state = new FinishState(context);
 
             var newState = state.Create();
@@ -29,9 +27,7 @@ namespace DomainTest.Models.Sprints.Stages
         public void SwitchStateToExecute()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var notifier = new Notifier(sprint);
-            var context = new ReviewSprintContext(sprint, notifier);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var state = new FinishState(context);
 
             var newState = state.Execute();
@@ -44,9 +40,7 @@ namespace DomainTest.Models.Sprints.Stages
         public void SwitchStateToFinish()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var notifier = new Notifier(sprint);
-            var context = new ReviewSprintContext(sprint, notifier);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var state = new FinishState(context);
 
             var newState = state.Finish();
@@ -58,9 +52,7 @@ namespace DomainTest.Models.Sprints.Stages
         public void SwitchStateToClose()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Document());
-            var notifier = new Notifier(sprint);
-            var context = new ReviewSprintContext(sprint, notifier);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var state = new FinishState(context);
 
             var newState = state.Close();
@@ -72,9 +64,7 @@ namespace DomainTest.Models.Sprints.Stages
         public void SwitchStateToCancel()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var notifier = new Notifier(sprint);
-            var context = new ReviewSprintContext(sprint, notifier);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var state = new FinishState(context);
 
             var newState = state.Cancel();
@@ -82,26 +72,21 @@ namespace DomainTest.Models.Sprints.Stages
             Assert.IsType<CancelState>(newState);
         }
 
-
         [Fact]
         public void SwitchStateToCloseShouldRecieveNotification()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var notifier = new Notifier(sprint);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
 
-            var observer = new Mock<IObserver>();
+            var observer = new Mock<ISprintObserver>();
 
-            notifier.AddObserver(observer.Object);
+            context.AddObserver(observer.Object);
 
-            var behavior = new Mock<ICloseBehavior>();
-            var context = new Mock<SprintContext>(MockBehavior.Loose, sprint, behavior.Object, notifier);
-
-            var state = new FinishState(context.Object);
+            var state = new FinishState(context);
 
             state.Cancel();
 
-            observer.Verify(x => x.Update(sprint), Times.Exactly(1));
+            observer.Verify(x => x.Update(context), Times.Exactly(1));
         }
 
     }

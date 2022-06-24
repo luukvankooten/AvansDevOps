@@ -23,7 +23,7 @@ namespace DomainTest.Models.Sprints.Close
             var pipeline = new PipeLineBehavior(components, visitor.Object);
 
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
 
             pipeline.Close(sprint);
             component.Verify(x => x.Accept(visitor.Object), Times.Exactly(1));
@@ -34,10 +34,9 @@ namespace DomainTest.Models.Sprints.Close
         {
             var visitor = new Mock<IVisitor>();
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-            var notifier = new Notifier(sprint);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
 
-            var buildComponent = new Build(notifier);
+            var buildComponent = new Build(sprint);
             var testComponent = new Test();
 
 

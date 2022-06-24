@@ -7,15 +7,13 @@ namespace Domain.Models.Sprints.Stages
     public class CreateState: ISprintStage
     {
 
-        public Sprint Sprint { get; }
+        public Sprint Context { get; }
 
-        public CreateState(SprintContext sprintContext, Sprint sprint)
+        public CreateState(Sprint context)
         {
-            SprintContext = sprintContext;
-            Sprint = new Sprint(sprint);
+            Context = context;
         }
 
-        public SprintContext SprintContext { get; }
 
         public ISprintStage Cancel()
         {
@@ -34,8 +32,8 @@ namespace Domain.Models.Sprints.Stages
 
         public ISprintStage Execute()
         {
-            if(SprintContext.Sprint.StartTime >= DateTime.Today) {
-                return new ExecuteState(SprintContext);
+            if(Context.StartTime >= DateTime.Today) {
+                return new ExecuteState(Context);
             }
 
             return this;            

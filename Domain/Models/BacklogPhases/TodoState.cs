@@ -6,16 +6,17 @@ namespace Domain.Models.BacklogPhases
     /// </summary>
     public class TodoState : IBacklogState
     {
-        public BacklogContext Context { get; set; }
+        public Item Context { get; set; }
 
-        public TodoState(BacklogContext context)
+        public TodoState(Item context)
         {
             Context = context;
         }
 
         public IBacklogState Doing()
         {
-            Context.ThreadDiscussion.IsClosed = false;
+            Context.Notify();
+
             return new DoingState(Context);
         }
 

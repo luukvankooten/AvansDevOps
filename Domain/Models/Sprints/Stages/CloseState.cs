@@ -8,12 +8,12 @@ namespace Domain.Models.Sprints.Stages
     /// </summary>
     public class CloseState: ISprintStage
     {
-        public CloseState(SprintContext sprintContext)
+        public CloseState(Sprint context)
         {
-            SprintContext = sprintContext;
+            Context = context;
         }
 
-        public SprintContext SprintContext { get; }
+        public Sprint Context { get; }
 
         public ISprintStage Cancel()
         {
@@ -22,7 +22,7 @@ namespace Domain.Models.Sprints.Stages
 
         public ISprintStage Close()
         {
-            SprintContext.CloseBehavior.Close(SprintContext.Sprint);
+            Context.CloseBehavior.Close(Context);
             return this;
         }
 

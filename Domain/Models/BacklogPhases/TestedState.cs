@@ -6,12 +6,12 @@ namespace Domain.Models.BacklogPhases
     /// </summary>
     public class TestedState : IBacklogState
     {
-        public TestedState(BacklogContext context)
+        public TestedState(Item context)
         {
             Context = context;
         }
 
-        public BacklogContext Context { get; set; }
+        public Item Context { get; set; }
 
 
         public IBacklogState Doing()
@@ -21,7 +21,7 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Done()
         {
-            Context.ThreadDiscussion.IsClosed = true;
+            //Context.ThreadDiscussion.IsClosed = true;
             return new DoneState(Context);
         }
 

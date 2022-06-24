@@ -1,6 +1,8 @@
 ﻿using System;
 using Domain.Models;
 using Domain.Models.Discussions;
+using Domain.Models.Sprints.Close;
+using Moq;
 using Xunit;
 
 namespace DomainTest.Models.Discussions
@@ -11,7 +13,7 @@ namespace DomainTest.Models.Discussions
         public void DiscussionIsOpen()
         {
             var member = new Member("Foo", "Baz");
-            var sprint = new Sprint("Foo", DateTime.Now, DateTime.Now, member, member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var item = new Item(member, "Bar", sprint);
             var thread = new ThreadDiscussion(item);
 
@@ -26,13 +28,12 @@ namespace DomainTest.Models.Discussions
         public void DiscussionIsClosed()
         {
             var member = new Member("Foo", "Baz");
-            var sprint = new Sprint("Foo", DateTime.Now, DateTime.Now, member, member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var item = new Item(member, "Bar", sprint);
             var thread = new ThreadDiscussion(item);
 
             var discussion = new Discussion("foo", "baz", member);
 
-            thread.IsClosed = true;
 
             Assert.Throws<InvalidOperationException>(() => thread.AddDiscussion(discussion));
             Assert.False(thread.HasDiscussion(discussion));
@@ -42,7 +43,7 @@ namespace DomainTest.Models.Discussions
         public void AddMultipleDiscussionToThreads()
         {
             var member = new Member("Foo", "Baz");
-            var sprint = new Sprint("Foo", DateTime.Now, DateTime.Now, member, member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var item = new Item(member, "Bar", sprint);
             var thread = new ThreadDiscussion(item);
             var discussion1 = new Discussion("foo", "baz", member);

@@ -6,8 +6,10 @@ namespace Domain.Models.Notifications
     /// <summary>
     /// Observer pattern
     /// </summary>
-    public interface IObserver
+    public interface ISprintObserver
     {
         void Update(Sprint sprint);
+
+        void Update(Item item);
     }
 }

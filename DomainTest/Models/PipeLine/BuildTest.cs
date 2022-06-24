@@ -2,6 +2,7 @@
 using Domain.Models;
 using Domain.Models.Notifications;
 using Domain.Models.Pipeline;
+using Domain.Models.Sprints.Close;
 using Moq;
 using Xunit;
 
@@ -15,10 +16,8 @@ namespace DomainTest.Models.PipeLine
         {
             var visitor = new Mock<IVisitor>();
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
-
-            var notifier = new Notifier(sprint);
-            var component = new Build(notifier);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var component = new Build(sprint);
 
             component.Accept(visitor.Object);
 
@@ -29,14 +28,12 @@ namespace DomainTest.Models.PipeLine
         public void BuildFailedShouldRaiseError()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var component = new Build(sprint);
 
-            var notifier = new Notifier(sprint);
-            var observer = new Mock<IObserver>();
+            var observer = new Mock<ISprintObserver>();
 
-            notifier.AddObserver(observer.Object);
-
-            var component = new Build(notifier);
+            sprint.AddObserver(observer.Object);
 
             Assert.Throws<Exception>(() => component.BuildFailed());
 

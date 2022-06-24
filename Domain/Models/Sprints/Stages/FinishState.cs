@@ -6,16 +6,16 @@ namespace Domain.Models.Sprints.Stages
     /// </summary>
     public class FinishState: ISprintStage
     {
-        public FinishState(SprintContext context)
+        public FinishState(Sprint context)
         {
             Context = context;
         }
 
-        public SprintContext Context { get; }
+        public Sprint Context { get; }
 
         public ISprintStage Cancel()
         {
-            Context.Notifier.Notify();
+            //Context.Notifier.Notify();
             return new CancelState(Context);
         }
 

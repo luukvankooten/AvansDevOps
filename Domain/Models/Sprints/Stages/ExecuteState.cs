@@ -6,12 +6,12 @@ namespace Domain.Models.Sprints.Stages
     /// </summary>
     public class ExecuteState: ISprintStage
     {
-        public ExecuteState(SprintContext sprintContext)
+        public ExecuteState(Sprint context)
         {
-            SprintContext = sprintContext;
+            Context = context;
         }
 
-        public SprintContext SprintContext { get; }
+        public Sprint Context { get; }
 
         public ISprintStage Cancel()
         {
@@ -35,7 +35,7 @@ namespace Domain.Models.Sprints.Stages
 
         public ISprintStage Finish()
         {
-            return new FinishState(SprintContext);
+            return new FinishState(Context);
         }
     }
 }

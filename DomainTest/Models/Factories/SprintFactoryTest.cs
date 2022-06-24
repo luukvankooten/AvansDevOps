@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Domain.Models.Factories;
+using Domain.Models.Sprints.Close;
 using Moq;
 using System;
 using Xunit;
@@ -9,23 +10,6 @@ namespace DomainTest.Models.Factories
     public class SprintFactoryTest
     {
         [Fact]
-        public void CreateSprintExisting()
-        {
-            DateTime now = DateTime.Now;
-            Member leadDeveloper = new Member("foobar", "foo@bar.com");
-            Member scrumMaster = new Member("foobar", "foo@bar.com");
-            Sprint sprint = new Sprint("foobar", now, now, leadDeveloper, scrumMaster);
-
-            SprintConcreteFactory factory = new SprintConcreteFactory();
-
-            var cloneSprint = factory.Create(sprint);
-
-            Assert.NotEqual(sprint, cloneSprint);
-            Assert.Equal(sprint.StartTime, now);
-            Assert.Equal(sprint.EndDate, now);
-        }
-
-        [Fact]
         public void CreateSprintCustom()
         {
             DateTime now = DateTime.Now;
@@ -34,7 +18,7 @@ namespace DomainTest.Models.Factories
 
             SprintConcreteFactory factory = new SprintConcreteFactory();
 
-            var sprint = factory.Create("foobar", now, now, leadDeveloper, scrumMaster);
+            var sprint = factory.Create("foobar", now, now, leadDeveloper, scrumMaster, new Mock<ICloseBehavior>().Object);
 
             Assert.Equal("foobar", sprint.Name);
             Assert.Equal(leadDeveloper, sprint.LeadDeveloper);
@@ -51,7 +35,7 @@ namespace DomainTest.Models.Factories
 
             SprintConcreteFactory factory = new SprintConcreteFactory();
 
-            var sprint  = factory.Create("foobar", now, now, leadDeveloper, scrumMaster, doc);
+            var sprint  = factory.Create("foobar", now, now, leadDeveloper, scrumMaster, new Mock<ICloseBehavior>().Object, doc);
 
             Assert.Equal(doc, sprint.Document);
             Assert.IsType<Sprint>(sprint);
