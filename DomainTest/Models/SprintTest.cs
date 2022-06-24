@@ -54,5 +54,43 @@ namespace DomainTest.Models
 
             Assert.IsType<CancelState>(context.SprintStage);
         }
+        
+        
+        [Fact]
+        public void ItemIsAlreadyInBacklog()
+        {
+            var member = new Member("foobar", "foobaz");
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            
+            var item = new Item(member, "foo", context);
+
+            context.AddItem(item);
+            
+            context.Execute();
+
+            Assert.Throws(new InvalidOperationException().GetType(), () => context.AddItem(item));
+        }
+
+        [Fact]
+        public void SprintIsNotRightStateToAddItem()
+        {
+            var member = new Member("foobar", "foobaz");
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            
+            context.Execute();
+
+            Assert.Throws(new InvalidOperationException().GetType(), () => context.AddItem(new Item(member, "foo", context)));
+        }
+        
+        [Fact]
+        public void SprintIsCreatedAddItems()
+        {
+            var member = new Member("foobar", "foobaz");
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+
+            var exception = Record.Exception(() => context.AddItem(new Item(member, "foo", context)));
+
+            Assert.Null(exception);
+        }
     }
 }

@@ -150,6 +150,17 @@ namespace DomainTest.Models
 
             Assert.Null(Record.Exception(() => context.ThreadDiscussion.AddDiscussion(discussion)));
         }
+        
+        
+        [Fact]
+        public void AddSubItem()
+        {
+            var member = new Member("Foo", "foo");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, "bar", sprint);
+            
+            Assert.IsType<Item>(context.AddSubItem(member, "Hello"));
+        }
 
 
         [Fact]
@@ -159,8 +170,6 @@ namespace DomainTest.Models
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
             var context = new Item(member, "bar", sprint);
             sprint.Execute();
-            // context.Doing();
-            // Na done
 
             Assert.Throws(new InvalidOperationException().GetType(), () => context.AddSubItem(member, "Hello"));
         }

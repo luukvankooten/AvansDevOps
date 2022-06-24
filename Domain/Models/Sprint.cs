@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Domain.Models.Notifications;
 using Domain.Models.Sprints;
 using Domain.Models.Sprints.Close;
@@ -48,6 +49,11 @@ namespace Domain.Models
             }
 
             if(Items.Contains(item))
+            {
+                throw new InvalidOperationException("Already in backlog");
+            }
+            
+            if (Items.SelectMany(i => i.SubItems).Contains(item))
             {
                 throw new InvalidOperationException("Already in backlog");
             }
