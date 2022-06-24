@@ -151,7 +151,18 @@ namespace DomainTest.Models
             Assert.Null(Record.Exception(() => context.ThreadDiscussion.AddDiscussion(discussion)));
         }
         
-        
+        [Fact]
+        public void AddInvalidComposite()
+        {
+            var member = new Member("Foo", "foo");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, "bar", sprint);
+            
+            Assert.IsType<Item>(context.AddSubItem(member, "Hello"));
+        }
+
+
+
         [Fact]
         public void AddSubItem()
         {
@@ -172,6 +183,30 @@ namespace DomainTest.Models
             sprint.Execute();
 
             Assert.Throws(new InvalidOperationException().GetType(), () => context.AddSubItem(member, "Hello"));
+        }
+        
+        [Fact]
+        public void ItemIsInTodoAndCanEditDescription()
+        {
+            var member = new Member("Foo", "foo");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, "bar", sprint);
+            
+            var exception = Record.Exception(() => context.SetDescription("foo"));
+
+            Assert.Null(exception);
+        }
+        
+        [Fact]
+        public void ItemIsntInRightStateToEditDescription()
+        {
+            var member = new Member("Foo", "foo");
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, "bar", sprint);
+            
+            sprint.Execute();
+            
+            Assert.Throws(new InvalidOperationException().GetType(), () => context.SetDescription("foo"));
         }
     }
 }

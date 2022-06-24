@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Domain.Models.Notifications;
 using Domain.Models.Sprints;
@@ -15,6 +16,7 @@ namespace Domain.Models
     {
         public Sprint(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, ICloseBehavior closeBehavior, Document document = null)
         {
+            SprintStage = new CreateState(this);
             Name = name;
             StartTime = startTime;
             EndDate = endDate;
@@ -22,40 +24,88 @@ namespace Domain.Models
             ScrumMaster = scrumMaster;
             CloseBehavior = closeBehavior;
             Document = document;
-            SprintStage = new CreateState(this);
+            
         }
 
-        public string Name { get; set; }
+        private string _name;
+        public string Name { get => _name;
+            set
+            {
+                isNotCreatedThrows();
+                _name = value;
+            }
+        }
 
-        public DateTime StartTime { get; set; }
+        private DateTime _startTime; 
+        public DateTime StartTime { 
+            get => _startTime;
+            set
+            {
+                isNotCreatedThrows();
 
-        public DateTime EndDate { get; set; }
+                _startTime = value;
+            }
+        }
+
+        private DateTime _endDate;
+
+        public DateTime EndDate
+        {
+            get => _endDate;
+            set
+            {
+                isNotCreatedThrows();
+
+                _endDate = value;
+            }
+        }
 
         public List<Item> Items { get; set; } = new List<Item>();
 
-        public Member ScrumMaster { get; set; }
+        private Member _scrumMaster;
+        public Member ScrumMaster
+        {
+            get => _scrumMaster;
+            set
+            {
+                isNotCreatedThrows();
+
+                _scrumMaster = value;
+            }
+        }
+
         public ICloseBehavior CloseBehavior { get; }
         public Document Document { get; set; }
 
         public ISprintStage SprintStage { get; protected set; }
 
-        public Member LeadDeveloper { get; set; }
+        private Member _leadDeveloper;
+
+        public Member LeadDeveloper
+        {
+            get => _leadDeveloper;
+            set
+            {
+                isNotCreatedThrows();
+                _leadDeveloper = value;
+            }
+        }
 
         public void AddItem(Item item)
         {
-            if(SprintStage is not CreateState)
-            {
-                throw new InvalidOperationException("Cannot add backlog item due to ");
-            }
+            isNotCreatedThrows();
 
             if(Items.Contains(item))
             {
                 throw new InvalidOperationException("Already in backlog");
             }
-            
-            if (Items.SelectMany(i => i.SubItems).Contains(item))
+
+            foreach (var i in Items)
             {
-                throw new InvalidOperationException("Already in backlog");
+                if (i.SubItems.Contains(item))
+                {
+                    throw new InvalidOperationException("Already in backlog");
+                }
             }
 
             Items.Add(item);
@@ -89,6 +139,14 @@ namespace Domain.Models
         protected override void Update(ISprintObserver observer)
         {
             observer.Update(this);
+        }
+
+        private void isNotCreatedThrows()
+        {
+            if (SprintStage is not CreateState)
+            {
+                throw new InvalidOperationException();
+            }
         }
     }
 }

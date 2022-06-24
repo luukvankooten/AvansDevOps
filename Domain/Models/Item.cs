@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Domain.Models.BacklogPhases;
 using Domain.Models.Discussions;
 using Domain.Models.Notifications;
@@ -16,6 +17,15 @@ namespace Domain.Models
             Sprint = sprint;
             ThreadDiscussion = new ThreadDiscussion(this);
             State = new TodoState(this);
+            sprint.AddItem(this);
+        }
+
+        protected Item(Member developer, string description, Item item)
+        {
+            Description = description;
+            Developer = developer;
+            Sprint = item.Sprint;
+            State = item.State;
         }
 
         public Member Developer { get; set; }
@@ -26,7 +36,7 @@ namespace Domain.Models
 
         public Sprint Sprint { get; set; }
 
-        public IList<Item> SubItems { get; } = new List<Item>();
+        public IList<Item> SubItems { get; set; } = new List<Item>();
 
         public ThreadDiscussion ThreadDiscussion { get; }
 
@@ -37,7 +47,7 @@ namespace Domain.Models
                 throw new InvalidOperationException("The sprint has already started");
             }
 
-            var item = new Item(member, description, Sprint);
+            var item = new Item(member, description, this);
 
             SubItems.Add(item);
 
