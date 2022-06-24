@@ -1,7 +1,6 @@
 ﻿using System;
 using Domain.Models;
 using Domain.Models.BacklogPhases;
-using Domain.Models.Notifications;
 using Domain.Models.Sprints.Close;
 using Moq;
 using Xunit;

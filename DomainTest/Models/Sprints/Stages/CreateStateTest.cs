@@ -1,7 +1,5 @@
 ﻿using System;
 using Domain.Models;
-using Domain.Models.Notifications;
-using Domain.Models.Sprints;
 using Domain.Models.Sprints.Close;
 using Domain.Models.Sprints.Stages;
 using Moq;

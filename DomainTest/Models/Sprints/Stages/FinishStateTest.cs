@@ -1,7 +1,6 @@
 ﻿using System;
 using Domain.Models.Notifications;
 using Domain.Models.Sprints.Stages;
-using Domain.Models.Sprints;
 using Domain.Models;
 using Xunit;
 using Domain.Models.Sprints.Close;

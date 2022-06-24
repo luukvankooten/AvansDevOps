@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Models;
-using Domain.Models.Notifications;
 using Domain.Models.Pipeline;
 using Domain.Models.Sprints.Close;
 using Moq;
