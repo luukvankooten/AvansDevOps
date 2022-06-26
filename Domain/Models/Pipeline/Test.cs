@@ -8,13 +8,8 @@ namespace Domain.Models.Pipeline
     {
         public double TestCoverage { get; set; } = 0;
 
-        public Test()
-        {
-        }
-
         protected override void Run()
         {
-            throw new NotImplementedException();
         }
     }
 }

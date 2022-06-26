@@ -12,7 +12,6 @@ namespace Domain.Models.Pipeline
 
         protected override void Run()
         {
-            throw new NotImplementedException();
         }
     }
 }

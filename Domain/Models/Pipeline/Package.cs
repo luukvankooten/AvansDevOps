@@ -6,14 +6,8 @@ namespace Domain.Models.Pipeline
     /// </summary>
     public class Package: PipelinePhase
     {
-        public Package()
-        {
-        }
-        
-
         protected override void Run()
         {
-            throw new NotImplementedException();
         }
     }
 }
