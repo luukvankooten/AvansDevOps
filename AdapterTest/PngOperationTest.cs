@@ -17,9 +17,12 @@ namespace AdapterTest
             var member = new Member("foobar", "foobaz");
             var project = new Project(member);
             var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
-            var report = new Report(sprint, new PdfOperation());
+            var export = new PngOperation();
+            var report = new Report(sprint, export);
 
             report.Export();
+            
+            Assert.True(export.IsExported);
         }
     }
 }

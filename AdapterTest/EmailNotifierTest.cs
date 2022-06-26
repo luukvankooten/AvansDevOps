@@ -22,7 +22,8 @@ namespace AdapterTest
             var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             
             Member[] members = {member};
-            email.Update(context,members, "Update");
+            email.Update(context, members, "Update");
+            Assert.Equal($"to: {member.Email} message: Update", service.builder.ToString());
         }
         
         [Fact]
@@ -39,6 +40,7 @@ namespace AdapterTest
 
             Member[] members = {member};
             email.Update(context, members, "Update");
+            Assert.Equal($"to: {member.Email} message: Update", service.builder.ToString());
         }
     }
 }

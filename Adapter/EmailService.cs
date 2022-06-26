@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace Adapter
 {   
@@ -8,9 +9,11 @@ namespace Adapter
     /// </summary>
     public class EmailService
     {
+        public StringBuilder builder = new();
+        
         public void SendEmail(string message, string email)
         {
-            Console.WriteLine($"to: {email} message: {message}");
+            builder.Append($"to: {email} message: {message}");
         }
     }
 }

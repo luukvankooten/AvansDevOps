@@ -30,6 +30,7 @@ namespace Domain.Models.Rapportage
 
         public void Export()
         {
+            
             ExportStrategy.Export(this);
         }
         
