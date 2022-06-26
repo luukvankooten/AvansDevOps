@@ -8,9 +8,9 @@ namespace Domain.Models.Rapportage
         
         public readonly Sprint Sprint;
 
-        public readonly IList<Header> Headers = new List<Header>();
-        
-        public readonly IList<Footer> Footers = new List<Footer>();
+        public IList<Header> Headers { get; private set; }  = new List<Header>();
+
+        public IList<Footer> Footers { get; private set; } = new List<Footer>();
 
         public Report(Sprint sprint, IReportExportStrategy exportStrategy)
         {
