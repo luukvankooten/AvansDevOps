@@ -6,20 +6,18 @@ namespace Domain.Models.Sprints.Close
 {
     public class PipeLineBehavior: ICloseBehavior
     {
-        public PipeLineBehavior(IList<IComponent> components, IVisitor visitor)
+        public PipeLineBehavior(IList<PipelinePhase> pipelinePhase)
         {
-            Components = components;
-            Visitor = visitor;
+            PipelinePhase = pipelinePhase;
         }
 
-        public IList<IComponent> Components { get; }
-        public IVisitor Visitor { get; }
+        public IList<PipelinePhase> PipelinePhase { get; }
 
         public void Close(Sprint sprint)
         {
-            foreach(IComponent component in Components)
+            foreach(PipelinePhase component in PipelinePhase)
             {
-                component.Accept(Visitor);
+                component.Execute();
             }
         }
     }

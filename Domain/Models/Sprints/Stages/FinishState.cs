@@ -15,7 +15,10 @@ namespace Domain.Models.Sprints.Stages
 
         public ISprintStage Cancel()
         {
-            Context.Notify();
+            Member[] members = { Context.ScrumMaster };
+            
+            Context.Notify(members, "The sprint has been canceled");
+                
             return new CancelState(Context);
         }
 

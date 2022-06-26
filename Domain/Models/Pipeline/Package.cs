@@ -4,15 +4,16 @@ namespace Domain.Models.Pipeline
     /// <summary>
     /// Visitor pattern
     /// </summary>
-    public class Package: IComponent
+    public class Package: PipelinePhase
     {
         public Package()
         {
         }
+        
 
-        public void Accept(IVisitor visitor)
+        protected override void Run()
         {
-            visitor.VisitPackage(this);
+            throw new NotImplementedException();
         }
     }
 }

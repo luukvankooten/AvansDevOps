@@ -14,7 +14,7 @@ namespace Domain.Models
     /// </summary>
     public class Sprint : Notifier
     {
-        public Sprint(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, ICloseBehavior closeBehavior, Document document = null)
+        public Sprint(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, Project project, ICloseBehavior closeBehavior, Document document = null)
         {
             SprintStage = new CreateState(this);
             Name = name;
@@ -22,9 +22,11 @@ namespace Domain.Models
             EndDate = endDate;
             LeadDeveloper = leadDeveloper;
             ScrumMaster = scrumMaster;
+            Project = project;
             CloseBehavior = closeBehavior;
             Document = document;
             
+            project.Sprints.Add(this);
         }
 
         private string _name;
@@ -73,6 +75,8 @@ namespace Domain.Models
                 _scrumMaster = value;
             }
         }
+
+        public Project Project { get; }
 
         public ICloseBehavior CloseBehavior { get; }
         public Document Document { get; set; }
@@ -136,9 +140,9 @@ namespace Domain.Models
             SprintStage = SprintStage.Close();
         }
 
-        protected override void Update(ISprintObserver observer)
+        protected override void Update(ISprintObserver observer, Member[] members, string message)
         {
-            observer.Update(this);
+            observer.Update(this, members, message);
         }
 
         private void isNotCreatedThrows()

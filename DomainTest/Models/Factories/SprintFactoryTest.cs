@@ -18,7 +18,9 @@ namespace DomainTest.Models.Factories
 
             SprintConcreteFactory factory = new SprintConcreteFactory();
 
-            var sprint = factory.Create("foobar", now, now, leadDeveloper, scrumMaster, new Mock<ICloseBehavior>().Object);
+            var project = new Project(new Member("foo", "foo@bar.com"));
+
+            var sprint = factory.Create("foobar", now, now, leadDeveloper, scrumMaster, project, new Mock<ICloseBehavior>().Object);
 
             Assert.Equal("foobar", sprint.Name);
             Assert.Equal(leadDeveloper, sprint.LeadDeveloper);
@@ -35,11 +37,12 @@ namespace DomainTest.Models.Factories
 
             SprintConcreteFactory factory = new SprintConcreteFactory();
 
-            var sprint  = factory.Create("foobar", now, now, leadDeveloper, scrumMaster, new Mock<ICloseBehavior>().Object, doc);
+            var project = new Project(new Member("foo", "foo@bar.com"));
+
+            var sprint = factory.Create("foobar", now, now, leadDeveloper, scrumMaster, project, new Mock<ICloseBehavior>().Object, doc);
 
             Assert.Equal(doc, sprint.Document);
             Assert.IsType<Sprint>(sprint);
-
         }
     }
 }

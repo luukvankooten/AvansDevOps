@@ -13,8 +13,9 @@ namespace Domain.Test.Models.BacklogPhases
         public void SwitchStateToTodo()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             var state = new TodoState(context);
 
             var newState = state.Todo();
@@ -26,8 +27,9 @@ namespace Domain.Test.Models.BacklogPhases
         public void SwitchStateToDoing()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             var state = new TodoState(context);
 
             var newState = state.Doing();
@@ -39,8 +41,9 @@ namespace Domain.Test.Models.BacklogPhases
         public void SwitchStateToReadyForTesting()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             var state = new TodoState(context);
 
             var newState = state.ReadyForTesting();
@@ -52,8 +55,9 @@ namespace Domain.Test.Models.BacklogPhases
         public void SwitchStateToTesting()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             var state = new TodoState(context);
 
             var newState = state.Testing();
@@ -65,8 +69,9 @@ namespace Domain.Test.Models.BacklogPhases
         public void SwitchStateTested()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             var state = new TodoState(context);
 
             var newState = state.Tested();
@@ -78,8 +83,9 @@ namespace Domain.Test.Models.BacklogPhases
         public void SwitchStateToDone()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             var state = new TodoState(context);
 
             var newState = state.Done();

@@ -5,13 +5,12 @@ namespace Domain.Models
 {
     public class Project
     {
-        public Project(IList<Sprint> sprints, Member productOwner)
+        public Project(Member productOwner)
         {
-            Sprints = sprints;
             ProductOwner = productOwner;
         }
 
-        public IList<Sprint> Sprints { get; set; }
+        public IList<Sprint> Sprints { get; set; } = new List<Sprint>();
 
         public Member ProductOwner { get; set; }
 

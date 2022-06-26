@@ -13,8 +13,9 @@ namespace DomainTest.Models.Discussions
         public void DiscussionIsOpen()
         {
             var member = new Member("Foo", "Baz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var item = new Item(member, "Bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var item = new Item(member, member, "Bar", sprint);
             var thread = new ThreadDiscussion(item);
 
             var discussion = new Discussion("foo", "baz", member);
@@ -28,8 +29,9 @@ namespace DomainTest.Models.Discussions
         public void DiscussionIsClosed()
         {
             var member = new Member("Foo", "Baz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var item = new Item(member, "Bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var item = new Item(member, member, "Bar", sprint);
             var thread = new ThreadDiscussion(item);
 
             var discussion = new Discussion("foo", "baz", member);
@@ -48,8 +50,9 @@ namespace DomainTest.Models.Discussions
         public void AddMultipleDiscussionToThreads()
         {
             var member = new Member("Foo", "Baz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var item = new Item(member, "Bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var item = new Item(member, member, "Bar", sprint);
             var thread = new ThreadDiscussion(item);
             var discussion1 = new Discussion("foo", "baz", member);
             var discussion2 = new Discussion("bar", "baz", member);

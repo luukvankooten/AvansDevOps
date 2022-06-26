@@ -14,7 +14,8 @@ namespace DomainTest.Models.Sprints.Stages
         public void SwitchStateToCreate()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var state = new CreateState(context);
 
             var newState = state.Create();
@@ -26,7 +27,8 @@ namespace DomainTest.Models.Sprints.Stages
         public void SwitchStateToExecuteAndSprintCanBeStarted()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var state = new CreateState(context);
 
             var newState = state.Execute();
@@ -39,7 +41,8 @@ namespace DomainTest.Models.Sprints.Stages
         {
             var startTime = DateTime.Today.AddDays(-4);
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", startTime, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", startTime, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var state = new CreateState(context);
 
             var newState = state.Execute();
@@ -51,7 +54,8 @@ namespace DomainTest.Models.Sprints.Stages
         public void SwitchStateToFinish()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var state = new CreateState(context);
 
             var newState = state.Finish();
@@ -63,7 +67,8 @@ namespace DomainTest.Models.Sprints.Stages
         public void SwitchStateToClose()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var state = new CreateState(context);
 
             var newState = state.Close();
@@ -75,7 +80,8 @@ namespace DomainTest.Models.Sprints.Stages
         public void SwitchStateToCancel()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var state = new CreateState(context);
 
             var newState = state.Cancel();

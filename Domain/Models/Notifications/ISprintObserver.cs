@@ -8,8 +8,8 @@ namespace Domain.Models.Notifications
     /// </summary>
     public interface ISprintObserver
     {
-        void Update(Sprint sprint);
+        void Update(Sprint sprint, Member[] members, string message);
 
-        void Update(Item item);
+        void Update(Item item, Member[] members, string message);
     }
 }

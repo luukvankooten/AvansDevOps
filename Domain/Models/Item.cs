@@ -10,9 +10,10 @@ namespace Domain.Models
 {
     public class Item : Notifier
     {
-        public Item(Member developer, string description, Sprint sprint)
+        public Item(Member developer, Member tester, string description, Sprint sprint)
         {
             Developer = developer;
+            Tester = tester;
             Description = description;
             Sprint = sprint;
             ThreadDiscussion = new ThreadDiscussion(this);
@@ -29,6 +30,7 @@ namespace Domain.Models
         }
 
         public Member Developer { get; set; }
+        public Member Tester { get; set; }
 
         public string Description { get; protected set; }
 
@@ -94,9 +96,9 @@ namespace Domain.Models
             State = State.Todo();
         }
 
-        protected override void Update(ISprintObserver observer)
+        protected override void Update(ISprintObserver observer, Member[] members, string message)
         {
-            observer.Update(this);
+            observer.Update(this, members, message);
         }
     }
 }

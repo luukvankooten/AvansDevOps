@@ -7,9 +7,9 @@ namespace Domain.Models.Factories
     /// </summary>
     public class ItemConcreteFactory : IItemFactory
     {
-        public virtual Item Create(Member developer, string description, Sprint sprint)
+        public virtual Item Create(Member developer, Member tester, string description, Sprint sprint)
         {
-            return new Item(developer, description, sprint);
+            return new Item(developer, tester, description, sprint);
         }
     }
 }

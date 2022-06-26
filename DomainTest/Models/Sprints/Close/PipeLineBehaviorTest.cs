@@ -4,53 +4,37 @@ using Domain.Models;
 using Domain.Models.Pipeline;
 using Domain.Models.Sprints.Close;
 using Moq;
+using Moq.Protected;
 using Xunit;
 
 namespace DomainTest.Models.Sprints.Close
 {
     public class PipeLineBehaviorTest
     {
+        
 
         [Fact]
-        public void ComponentAcceptVisitoryIsCalled()
+        public void PipeLineCloseShouldCallPipelineExecute()
         {
-            var visitor = new Mock<IVisitor>();
+            var mock = new Mock<PipelinePhase>();
 
-            var component = new Mock<IComponent>();
-            var components = new List<IComponent>() { component.Object };
 
-            var pipeline = new PipeLineBehavior(components, visitor.Object);
+            mock.Protected().Setup("Run");
 
+            var list = new List<PipelinePhase>();
+            
+            list.Add(mock.Object);
+
+            var close = new PipeLineBehavior(list); 
+            
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            
+            close.Close(sprint);
 
-            pipeline.Close(sprint);
-            component.Verify(x => x.Accept(visitor.Object), Times.Exactly(1));
+            mock.Protected().Verify("Run", Times.Exactly(1));
         }
-
-        [Fact]
-        public void BuildPipeLine()
-        {
-            var visitor = new Mock<IVisitor>();
-            var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-
-            var buildComponent = new Build(sprint);
-            var testComponent = new Test();
-
-
-            var components = new List<IComponent>()
-            {
-                buildComponent,
-                testComponent,
-            };
-
-            var pipeline = new PipeLineBehavior(components, visitor.Object);
-
-            pipeline.Close(sprint);
-
-            visitor.Verify(x => x.VisitBuild(buildComponent), Times.Exactly(1));
-            visitor.Verify(x => x.VisitTest(testComponent), Times.Exactly(1));
-        }
+        
     }
 }

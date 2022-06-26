@@ -14,8 +14,9 @@ namespace DomainTest.Models
         public void BacklogPhashesSuccesItem()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
 
             context.Doing();
 
@@ -43,8 +44,9 @@ namespace DomainTest.Models
         public void BacklogPhasesTesterRejectsItem()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
 
             context.Doing();
 
@@ -67,8 +69,9 @@ namespace DomainTest.Models
         public void BacklogPhasesLeadDeveloperRejectsItemByDOD()
         {
             var member = new Member("Foo", "foo");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
 
             context.Doing();
 
@@ -95,8 +98,9 @@ namespace DomainTest.Models
         public void BackLogIsDoneDiscussionClose()
         {
             var member = new Member("Foo", "foo");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             var discussion = new Discussion("Foo", "bar", member);
 
 
@@ -116,8 +120,9 @@ namespace DomainTest.Models
         public void BackLogDiscussionIsOpen()
         {
             var member = new Member("Foo", "foo");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             var discussion = new Discussion("Foo", "bar", member);
 
             context.Doing();
@@ -130,8 +135,9 @@ namespace DomainTest.Models
         public void BackLogDiscussionReOpen()
         {
             var member = new Member("Foo", "foo");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             var discussion = new Discussion("Foo", "bar", member);
 
             context.Doing();
@@ -155,8 +161,9 @@ namespace DomainTest.Models
         public void AddInvalidComposite()
         {
             var member = new Member("Foo", "foo");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             
             Assert.IsType<Item>(context.AddSubItem(member, "Hello"));
         }
@@ -167,8 +174,9 @@ namespace DomainTest.Models
         public void AddSubItem()
         {
             var member = new Member("Foo", "foo");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             
             Assert.IsType<Item>(context.AddSubItem(member, "Hello"));
         }
@@ -178,8 +186,9 @@ namespace DomainTest.Models
         public void AddSubItemWhenStateIsNotCreated()
         {
             var member = new Member("Foo", "foo");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             sprint.Execute();
 
             Assert.Throws(new InvalidOperationException().GetType(), () => context.AddSubItem(member, "Hello"));
@@ -189,8 +198,9 @@ namespace DomainTest.Models
         public void ItemIsInTodoAndCanEditDescription()
         {
             var member = new Member("Foo", "foo");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             
             var exception = Record.Exception(() => context.SetDescription("foo"));
 
@@ -201,8 +211,9 @@ namespace DomainTest.Models
         public void ItemIsntInRightStateToEditDescription()
         {
             var member = new Member("Foo", "foo");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member, "bar", sprint);
             
             sprint.Execute();
             

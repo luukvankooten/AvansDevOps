@@ -19,15 +19,15 @@ namespace Domain.Models.Notifications
             observers.Remove(observer);
         }
 
-        public void Notify()
+        public void Notify(Member[] members, string message)
         {
             foreach (var o in observers)
             {
-                Update(o);
+                Update(o, members, message);
             }
         }
 
-        protected abstract void Update(ISprintObserver observer);
+        protected abstract void Update(ISprintObserver observer, Member[] members, string message);
 
     }
 }

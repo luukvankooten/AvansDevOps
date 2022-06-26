@@ -7,6 +7,6 @@ namespace Domain.Models.Factories
     /// </summary>
     public interface IProjectFactory
     {
-        Project Create(IList<Sprint> sprints, Member productOwner);
+        Project Create(Member productOwner);
     }
 }

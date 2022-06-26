@@ -13,7 +13,8 @@ namespace DomainTest.Models
         public void SprintContextHappyStateTest()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
 
             context.Create();
 
@@ -36,7 +37,8 @@ namespace DomainTest.Models
         public void SprintContextCancelStateTest()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
 
             context.Create();
 
@@ -60,8 +62,9 @@ namespace DomainTest.Models
         public void AddExistingItemWhichHasAsSubItem()
         {
             var member = new Member("Foo", "foo");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            var context = new Item(member, "bar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
+            var context = new Item(member, member,"bar", sprint);
 
             var item = context.AddSubItem(member, "hello world");
 
@@ -73,9 +76,10 @@ namespace DomainTest.Models
         public void ItemIsAlreadyInBacklog()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             
-            var item = new Item(member, "foo", context);
+            var item = new Item(member, member,"foo", context);
 
             context.Execute();
 
@@ -86,20 +90,22 @@ namespace DomainTest.Models
         public void SprintIsNotRightStateToAddItem()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             
             context.Execute();
 
-            Assert.Throws(new InvalidOperationException().GetType(), () => context.AddItem(new Item(member, "foo", context)));
+            Assert.Throws(new InvalidOperationException().GetType(), () => context.AddItem(new Item(member, member,"foo", context)));
         }
         
         [Fact]
         public void SprintIsCreatedAddItems()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
 
-            var exception = Record.Exception(() => new Item(member, "foo", context));
+            var exception = Record.Exception(() => new Item(member, member,"foo", context));
 
             Assert.Null(exception);
         }
@@ -108,7 +114,8 @@ namespace DomainTest.Models
         public void CanEditName()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             
             var exception = Record.Exception(() => context.Name = "bas");
 
@@ -119,7 +126,8 @@ namespace DomainTest.Models
         public void CanEditScrumMaster()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var newMember = new Member("foobar", "foobaz");
             var exception = Record.Exception(() => context.ScrumMaster = newMember);
 
@@ -130,7 +138,8 @@ namespace DomainTest.Models
         public void CanEditScrumLead()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var newMember = new Member("foobar", "foobaz");
             var exception = Record.Exception(() => context.ScrumMaster = newMember);
 
@@ -141,7 +150,8 @@ namespace DomainTest.Models
         public void CanEditScrumEndTime()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var newMember = new Member("foobar", "foobaz");
             var exception = Record.Exception(() => context.EndDate = DateTime.Now);
 
@@ -152,7 +162,8 @@ namespace DomainTest.Models
         public void CanEditScrumStartTime()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var newMember = new Member("foobar", "foobaz");
             var exception = Record.Exception(() => context.StartTime = DateTime.Now);
 
@@ -163,7 +174,8 @@ namespace DomainTest.Models
         public void CantEditName()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var newMember = new Member("foobar", "foobaz");
             context.Execute();
             
@@ -174,7 +186,8 @@ namespace DomainTest.Models
         public void CantEditScrumMaster()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var newMember = new Member("foobar", "foobaz");
             context.Execute();
             
@@ -185,7 +198,8 @@ namespace DomainTest.Models
         public void CantEditScrumLead()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var newMember = new Member("foobar", "foobaz");
             context.Execute();
             
@@ -196,7 +210,8 @@ namespace DomainTest.Models
         public void CantEditScrumEndTime()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var newMember = new Member("foobar", "foobaz");
             context.Execute();
             
@@ -207,7 +222,8 @@ namespace DomainTest.Models
         public void CantEditScrumStartTime()
         {
             var member = new Member("foobar", "foobaz");
-            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var context = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var newMember = new Member("foobar", "foobaz");
             context.Execute();
             

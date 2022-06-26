@@ -16,6 +16,8 @@ namespace Domain.Models.BacklogPhases
        
         public IBacklogState Doing()
         {
+            Member[] members = { Context.Sprint.ScrumMaster };
+            Context.Notify(members, "Cannot move back to doing");
             return this;
         }
 
@@ -36,7 +38,6 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Todo()
         {
-            Context.Notify();
             return new TodoState(Context);
         }
 

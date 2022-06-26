@@ -21,7 +21,8 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState ReadyForTesting()
         {
-            Context.Notify();
+            Member[] members = { Context.Tester };
+            Context.Notify(members, "The backlog item is ready for testing");
             return new ReadyForTestingState(Context);
         }
 

@@ -7,14 +7,8 @@ namespace DomainTest.Models.PipeLine
     public class PackageTest
     {
         [Fact]
-        public void AcceptsVisotorTest()
+        public void PackageTestShouldOutput()
         {
-            var visitor = new Mock<IVisitor>();
-            var component = new Package();
-
-            component.Accept(visitor.Object);
-
-            visitor.Verify(x => x.VisitPackage(component), Times.Exactly(1));
         }
     }
 }

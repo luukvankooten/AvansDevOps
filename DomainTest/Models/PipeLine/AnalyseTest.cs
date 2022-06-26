@@ -8,14 +8,9 @@ namespace DomainTest.Models.PipeLine
     {
 
         [Fact]
-        public void AcceptsVisotorTest()
+        public void AnalyseTestShouldOutput()
         {
-            var visitor = new Mock<IVisitor>();
-            var component = new Analyse();
-
-            component.Accept(visitor.Object);
-
-            visitor.Verify(x => x.VisitAnalyse(component), Times.Exactly(1));
+            // var visitor = ;
         }
     }
 }

@@ -17,7 +17,8 @@ namespace DomainTest.Models.Sprints.Close
         {
             var member = new Member("foobar", "foobaz");
             var doc = new Document();
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object, doc);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object, doc);
             var review = new ReviewBehavior();
 
             var exception = Record.Exception(() => review.Close(sprint));
@@ -30,7 +31,8 @@ namespace DomainTest.Models.Sprints.Close
         public void FileIsNotUploaded()
         {
             var member = new Member("foobar", "foobaz");
-            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, project, new Mock<ICloseBehavior>().Object);
             var review = new ReviewBehavior();
 
             Assert.Throws<InvalidProgramException>(() => review.Close(sprint));

@@ -4,7 +4,7 @@ namespace Domain.Models.Pipeline
     /// <summary>
     /// Visitor pattern
     /// </summary>
-    public class Test : IComponent
+    public class Test : PipelinePhase
     {
         public double TestCoverage { get; set; } = 0;
 
@@ -12,9 +12,9 @@ namespace Domain.Models.Pipeline
         {
         }
 
-        public void Accept(IVisitor visitor)
+        protected override void Run()
         {
-            visitor.VisitTest(this);
+            throw new NotImplementedException();
         }
     }
 }

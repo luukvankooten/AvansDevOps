@@ -5,6 +5,6 @@
     /// </summary>
     public interface IItemFactory
     {
-        Item Create(Member developer, string description, Sprint sprint);
+        Item Create(Member developer, Member tester, string description, Sprint sprint);
     }
 }

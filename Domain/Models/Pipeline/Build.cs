@@ -4,29 +4,27 @@ using Domain.Models.Notifications;
 namespace Domain.Models.Pipeline
 {
     /// <summary>
-    /// Visitor pattern
+    /// Template pattern
     /// </summary>
-    public class Build: IComponent
+    public class Build: PipelinePhase
     {
-        public bool Failed { get; protected set; } = false;
-        public Notifier Notifier { get; }
+        public Sprint Sprint { get; }
+        public bool Failed { get; set; } = false;
 
-        public Build(Notifier notifier)
+        public Build(Sprint sprint)
         {
-            Notifier = notifier;
+            Sprint = sprint;
         }
 
-
-        public void BuildFailed()
+        protected override void Run()
         {
-            Notifier.Notify();
-            Failed = true;
-            throw new Exception("Build have failed");
-        }
-
-        public void Accept(IVisitor visitor)
-        {
-            visitor.VisitBuild(this);
+            if (Failed)
+            {
+                Member[] members = { Sprint.Project.ProductOwner, Sprint.LeadDeveloper  };
+                Sprint.Notify(members,"The build has failed");
+                Failed = true;
+                throw new Exception("Build has failed");
+            }
         }
     }
 }

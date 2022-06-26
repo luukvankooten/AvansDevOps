@@ -4,15 +4,12 @@ namespace Domain.Models.Pipeline
     /// <summary>
     /// Visitor pattern
     /// </summary>
-    public class Deploy: IComponent
+    public class Deploy: PipelinePhase
     {
-        public Deploy()
-        {
-        }
 
-        public void Accept(IVisitor visitor)
+        protected override void Run()
         {
-            visitor.VisitDeploy(this);
+            throw new NotImplementedException();
         }
     }
 }

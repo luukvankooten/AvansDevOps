@@ -14,14 +14,14 @@ namespace DomainTest.Models.Factories
         {
             Member member = new Member("foobar", "foo@bar.com");
             Member scrumMaster = new Member("foobar", "foo@bar.com");
-            Sprint sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-
-            Item item = new Item(member, "foobar", sprint);
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, scrumMaster, project, new Mock<ICloseBehavior>().Object);
+            var item = new Item(member, member, "Bar", sprint);
 
             Mock<ItemConcreteFactory> factoryMock = new Mock<ItemConcreteFactory>();
-            factoryMock.Setup(x => x.Create(member, "foobar", sprint)).Returns(item);
+            factoryMock.Setup(x => x.Create(member, member, "foobar", sprint)).Returns(item);
 
-            Assert.Equal(item, factoryMock.Object.Create(member, "foobar", sprint));
+            Assert.Equal(item, factoryMock.Object.Create(member, member,"foobar", sprint));
         }
     }
 }

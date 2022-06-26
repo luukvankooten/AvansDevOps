@@ -2,17 +2,13 @@
 namespace Domain.Models.Pipeline
 {
     /// <summary>
-    /// Visitor pattern
+    /// Template pattern
     /// </summary>
-    public class Analyse: IComponent
+    public class Analyse: PipelinePhase
     {
-        public Analyse()
+        protected override void Run()
         {
-        }
-
-        public void Accept(IVisitor visitor)
-        {
-            visitor.VisitAnalyse(this);
+            throw new NotImplementedException();
         }
     }
 }

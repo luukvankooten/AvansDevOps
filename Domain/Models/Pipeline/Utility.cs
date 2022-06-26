@@ -4,15 +4,15 @@ namespace Domain.Models.Pipeline
     /// <summary>
     /// Visitor pattern
     /// </summary>
-    public class Utility: IComponent
+    public class Utility: PipelinePhase
     {
         public Utility()
         {
         }
 
-        public void Accept(IVisitor visitor)
+        protected override void Run()
         {
-            visitor.VisitUtitily(this);
+            throw new NotImplementedException();
         }
     }
 }

@@ -15,15 +15,15 @@ namespace DomainTest.Models.Factories
         {
             Member member = new Member("foobar", "foo@bar.com");
             Member productOwner = new Member("foobar", "foo@bar.com");
-            Sprint sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, member, new Mock<ICloseBehavior>().Object);
-            List<Sprint> list = new List<Sprint>() { sprint };
-
-            Project project = new Project(list, productOwner);
+            
+            var project = new Project(member);
+            var sprint = new Sprint("bas", DateTime.Now, DateTime.Now, member, productOwner, project, new Mock<ICloseBehavior>().Object);
+            var item = new Item(member, member, "Bar", sprint);
 
             Mock<ProjectConcreteFactory> factoryMock = new Mock<ProjectConcreteFactory>();
-            factoryMock.Setup(x => x.Create(list, productOwner)).Returns(project);
+            factoryMock.Setup(x => x.Create(productOwner)).Returns(project);
 
-            Assert.Equal(project, factoryMock.Object.Create(list, productOwner));
+            Assert.Equal(project, factoryMock.Object.Create(productOwner));
         }
     }
 }

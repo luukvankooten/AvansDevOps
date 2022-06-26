@@ -15,8 +15,6 @@ namespace Domain.Models.BacklogPhases
 
         public IBacklogState Doing()
         {
-            Context.Notify();
-
             return new DoingState(Context);
         }
 

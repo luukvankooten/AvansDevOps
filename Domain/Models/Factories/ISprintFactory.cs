@@ -8,7 +8,7 @@ namespace Domain.Models.Factories
     /// </summary>
     public interface ISprintFactory
     {
-        Sprint Create(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, ICloseBehavior behavior);
-        Sprint Create(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, ICloseBehavior behavior, Document document);
+        Sprint Create(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, Project project, ICloseBehavior behavior);
+        Sprint Create(string name, DateTime startTime, DateTime endDate, Member leadDeveloper, Member scrumMaster, Project project, ICloseBehavior behavior, Document document);
     }
 }
